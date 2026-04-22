@@ -664,13 +664,13 @@
 <body>
 
     <header>
-        <a href="#" class="logo">Апартамент Тутхон</a>
+        <a href="#" class="logo">Huoneisto Tuthon</a>
         <div class="nav-links">
             <a href="#about-pomorie" data-i18n="nav_about">Pomoriesta</a>
             <a href="#services" data-i18n="nav_services">Mukavuudet</a>
             <a href="#gallery" data-i18n="nav_gallery">Galleria</a>
             <a href="#location" data-i18n="nav_location">Sijainti</a>
-            <a href="#booking" class="btn-book-nav" data-i18n="nav_book">Varaa päivät 📅</a>
+            <a href="#booking" class="btn-book-nav" data-i18n="nav_book">Varaa päivät</a>
         </div>
         <div class="lang-switcher">
             <button class="lang-btn" onclick="toggleLangDropdown()">
@@ -701,7 +701,7 @@
             <p data-i18n="hero_text">Valoisa ja viihtyisä asuntomme sijaitsee vain muutaman askeleen päässä rannasta. Täydellinen paikka perhelomalle, joka on täynnä aurinkoa, merituulta ja täydellistä rentoutumista.</p>
             <a href="#booking" class="btn-main">
                 <span data-i18n="hero_btn">Varaa nyt</span>
-                <span style="font-size: 1.5rem;">📅</span>
+
             </a>
         </div>
     </section>
@@ -817,7 +817,7 @@
                     <span id="checkoutDate" data-i18n="cal_pick">— Valitse —</span>
                 </div>
             </div>
-            <button class="btn-calendar-book" data-i18n="cal_book_btn" onclick="bookDates()">Varaa päivät 📅</button>
+            <button class="btn-calendar-book" data-i18n="cal_book_btn" onclick="bookDates()">Varaa päivät</button>
 
             <!-- Админ логин -->
             <div class="admin-login-box" id="adminLoginBox" style="display:none;">
@@ -879,7 +879,7 @@
 const translations = {
     bg: {
         nav_about: 'За Поморие', nav_services: 'Удобства', nav_gallery: 'Галерия',
-        nav_location: 'Локация', nav_book: 'Запази дати 📅',
+        nav_location: 'Локация', nav_book: 'Запази дати',
         hero_title: 'Добре дошли във Вашето <span>лятно убежище</span> в Поморие',
         hero_text: 'Нашият светъл и уютен апартамент се намира само на метри от плажа. Перфектното място за вашата семейна почивка, изпълнена със слънце, морски бриз и пълен релакс.',
         hero_btn: 'Резервирайте сега',
@@ -901,19 +901,19 @@ const translations = {
         gallery_title: 'Надникнете вътре', gallery_subtitle: 'Светъл, модерен и създаден с любов към детайла.',
         gal_living: 'Всекидневна с ъглов диван', gal_bedroom: 'Спалня с двойно легло', gal_kitchen: 'Напълно оборудвана кухня', gal_bathroom: 'Баня с пералня', gal_dining: 'Трапезария с изход към терасата', gal_bedroom2: 'Спалня с две легла', gal_kitchen2: 'Кухненски кът с трапезна маса',
         booking_title: 'Резервирайте вашия престой', booking_subtitle: 'Изберете дати за настаняване и напускане от календара.',
-        cal_checkin: 'Настаняване', cal_checkout: 'Напускане', cal_pick: '— Изберете —', cal_book_btn: 'Запази дати 📅',
+        cal_checkin: 'Настаняване', cal_checkout: 'Напускане', cal_pick: '— Изберете —', cal_book_btn: 'Запази дати',
         cal_price_label: '/ на вечер', cal_nights: 'нощувки', cal_total: 'Общо',
         location_title: 'Къде се намираме', location_subtitle: 'На крачки от плажа и централните атракции на Поморие.',
         footer_desc: 'Вашето място за съвършената морска почивка в сърцето на град Поморие.',
         footer_contacts: 'Контакти', footer_links: 'Бързи връзки',
         footer_link_city: 'За града', footer_link_services: 'Удобства и Паркинг', footer_link_photos: 'Снимки', footer_link_map: 'Карта и Локация',
-        footer_copy: '&copy; 2026 Апартамент Тутхон Поморие. Всички права запазени.',
+        footer_copy: '&copy; 2026 Huoneisto Tuthon Pomorie. Всички права запазени.',
         dayNames: ['Пн','Вт','Ср','Чт','Пт','Сб','Нд'],
         monthNames: ['Януари','Февруари','Март','Април','Май','Юни','Юли','Август','Септември','Октомври','Ноември','Декември']
     },
     en: {
         nav_about: 'About Pomorie', nav_services: 'Amenities', nav_gallery: 'Gallery',
-        nav_location: 'Location', nav_book: 'Book dates 📅',
+        nav_location: 'Location', nav_book: 'Book dates',
         hero_title: 'Welcome to Your <span>Summer Retreat</span> in Pomorie',
         hero_text: 'Our bright and cozy apartment is located just steps from the beach. The perfect place for your family vacation, filled with sunshine, sea breeze and total relaxation.',
         hero_btn: 'Book now',
@@ -935,19 +935,19 @@ const translations = {
         gallery_title: 'Take a Peek Inside', gallery_subtitle: 'Bright, modern and created with attention to detail.',
         gal_living: 'Living room with corner sofa', gal_bedroom: 'Bedroom with double bed', gal_kitchen: 'Fully equipped kitchen', gal_bathroom: 'Bathroom with washing machine', gal_dining: 'Dining area with terrace access', gal_bedroom2: 'Bedroom with twin beds', gal_kitchen2: 'Kitchen corner with dining table',
         booking_title: 'Book Your Stay', booking_subtitle: 'Select check-in and check-out dates from the calendar.',
-        cal_checkin: 'Check-in', cal_checkout: 'Check-out', cal_pick: '— Select —', cal_book_btn: 'Book dates 📅',
+        cal_checkin: 'Check-in', cal_checkout: 'Check-out', cal_pick: '— Select —', cal_book_btn: 'Book dates',
         cal_price_label: '/ per night', cal_nights: 'nights', cal_total: 'Total',
         location_title: 'Where We Are', location_subtitle: 'Steps away from the beach and Pomorie\'s central attractions.',
         footer_desc: 'Your place for the perfect seaside vacation in the heart of Pomorie.',
         footer_contacts: 'Contacts', footer_links: 'Quick Links',
         footer_link_city: 'About the city', footer_link_services: 'Amenities & Parking', footer_link_photos: 'Photos', footer_link_map: 'Map & Location',
-        footer_copy: '&copy; 2026 Apartment Tuthon Pomorie. All rights reserved.',
+        footer_copy: '&copy; 2026 Huoneisto Tuthon Pomorie. All rights reserved.',
         dayNames: ['Mo','Tu','We','Th','Fr','Sa','Su'],
         monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December']
     },
     ru: {
         nav_about: 'О Поморие', nav_services: 'Удобства', nav_gallery: 'Галерея',
-        nav_location: 'Расположение', nav_book: 'Забронировать 📅',
+        nav_location: 'Расположение', nav_book: 'Забронировать',
         hero_title: 'Добро пожаловать в Ваш <span>летний уголок</span> в Поморие',
         hero_text: 'Наша светлая и уютная квартира расположена всего в нескольких шагах от пляжа. Идеальное место для семейного отдыха, наполненного солнцем, морским бризом и полным расслаблением.',
         hero_btn: 'Забронировать',
@@ -969,19 +969,19 @@ const translations = {
         gallery_title: 'Загляните внутрь', gallery_subtitle: 'Светлый, современный и созданный с любовью к деталям.',
         gal_living: 'Гостиная с угловым диваном', gal_bedroom: 'Спальня с двуспальной кроватью', gal_kitchen: 'Полностью оборудованная кухня', gal_bathroom: 'Ванная со стиральной машиной', gal_dining: 'Столовая с выходом на террасу', gal_bedroom2: 'Спальня с двумя кроватями', gal_kitchen2: 'Кухонный уголок со столом',
         booking_title: 'Забронируйте ваш отдых', booking_subtitle: 'Выберите даты заселения и выезда из календаря.',
-        cal_checkin: 'Заселение', cal_checkout: 'Выезд', cal_pick: '— Выберите —', cal_book_btn: 'Забронировать даты 📅',
+        cal_checkin: 'Заселение', cal_checkout: 'Выезд', cal_pick: '— Выберите —', cal_book_btn: 'Забронировать даты',
         cal_price_label: '/ за ночь', cal_nights: 'ночей', cal_total: 'Итого',
         location_title: 'Где мы находимся', location_subtitle: 'В нескольких шагах от пляжа и центральных достопримечательностей Поморие.',
         footer_desc: 'Ваше место для идеального морского отдыха в сердце города Поморие.',
         footer_contacts: 'Контакты', footer_links: 'Быстрые ссылки',
         footer_link_city: 'О городе', footer_link_services: 'Удобства и парковка', footer_link_photos: 'Фотографии', footer_link_map: 'Карта и расположение',
-        footer_copy: '&copy; 2026 Апартамент Тутхон Поморие. Все права защищены.',
+        footer_copy: '&copy; 2026 Huoneisto Tuthon Pomorie. Все права защищены.',
         dayNames: ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'],
         monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь']
     },
     fi: {
         nav_about: 'Pomoriesta', nav_services: 'Mukavuudet', nav_gallery: 'Galleria',
-        nav_location: 'Sijainti', nav_book: 'Varaa päivät 📅',
+        nav_location: 'Sijainti', nav_book: 'Varaa päivät',
         hero_title: 'Tervetuloa <span>kesäpakopaikkaan</span> Pomoriessa',
         hero_text: 'Valoisa ja viihtyisä asuntomme sijaitsee vain muutaman askeleen päässä rannasta. Täydellinen paikka perhelomalle, joka on täynnä aurinkoa, merituulta ja täydellistä rentoutumista.',
         hero_btn: 'Varaa nyt',
@@ -1003,7 +1003,7 @@ const translations = {
         gallery_title: 'Kurkista sisään', gallery_subtitle: 'Valoisa, moderni ja luotu rakkaudella yksityiskohtiin.',
         gal_living: 'Olohuone kulmasohvalla', gal_bedroom: 'Makuuhuone parisängyllä', gal_kitchen: 'Täysin varusteltu keittiö', gal_bathroom: 'Kylpyhuone pesukoneella', gal_dining: 'Ruokailutila terassin käynti', gal_bedroom2: 'Makuuhuone kahdella sängyllä', gal_kitchen2: 'Keittiönurkkaus ruokapöydällä',
         booking_title: 'Varaa majoituksesi', booking_subtitle: 'Valitse sisäänkirjautumis- ja uloskirjautumispäivät kalenterista.',
-        cal_checkin: 'Sisäänkirjautuminen', cal_checkout: 'Uloskirjautuminen', cal_pick: '— Valitse —', cal_book_btn: 'Varaa päivät 📅',
+        cal_checkin: 'Sisäänkirjautuminen', cal_checkout: 'Uloskirjautuminen', cal_pick: '— Valitse —', cal_book_btn: 'Varaa päivät',
         cal_price_label: '/ per yö', cal_nights: 'yötä', cal_total: 'Yhteensä',
         location_title: 'Missä olemme', location_subtitle: 'Muutaman askeleen päässä rannasta ja Pomorien keskusnähtävyyksistä.',
         footer_desc: 'Paikkasi täydelliselle merilomalle Pomorien sydämessä.',
@@ -1392,7 +1392,7 @@ function renderAdminBookings() {
         const td = new Date(r.to);
         const nights = countNights(fd, td);
         html += '<div class="admin-booking-item">'
-            + '<span>📅 ' + from + ' → ' + to + ' (' + nights + ' нощ.)</span>'
+            + '<span>' + from + ' → ' + to + ' (' + nights + ' нощ.)</span>'
             + '<button class="admin-btn admin-btn-delete" onclick="adminDeleteBooking('+i+')">✕ Изтрий</button>'
             + '</div>';
     });
