@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="fi"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huoneisto Tuthon | Pomorie</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Цветова палитра и основни настройки */
+        :root {
+            --primary-blue: #0CA789; /* Морско тюркоазено */
+            --light-blue: #E8F6F5; /* Много светло синьо за фонове */
+            --sand: #FDF9F1; /* Пясъчно бяло */
+            --dark-text: #2C3E50;
+            --gray-text: #666;
+            --white: #FFFFFF;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            color: var(--dark-text);
+            background-color: var(--sand);
+            scroll-behavior: smooth;
+        }
+
+        /* Навигация (Header) */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 15px 50px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--primary-blue); }
+        
+        .btn-book-nav {
+            background-color: var(--primary-blue);
+            color: var(--white) !important;
+            padding: 10px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(12, 167, 137, 0.3);
+        }
+
+        .btn-book-nav:hover {
+            background-color: #098b72;
+            transform: translateY(-2px);
+        }
+
+        /* 1. Начален екран (Hero Section) */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') center center / cover no-repeat;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(253,249,241,0.88) 0%, rgba(232,246,245,0.75) 50%, rgba(12,167,137,0.2) 100%);
+        }
+
+        .hero-content {
+            max-width: 650px;
+            animation: fadeIn 1.5s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--dark-text);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero h1 span { color: var(--primary-blue); }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray-text);
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .btn-main {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 15px 35px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 20px rgba(12, 167, 137, 0.25);
+            transition: all 0.3s;
+        }
+
+        .btn-main:hover {
+            background-color: #098b72;
+            box-shadow: 0 15px 25px rgba(12, 167, 137, 0.35);
+            transform: translateY(-3px);
+        }
+
+        /* Общи стилове за секциите */
+        section { padding: 100px 10%; }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-text);
+            font-size: 1.1rem;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* За Поморие (Дестинацията) */
+        .pomorie-info {
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .pomorie-text { flex: 1; }
+        
+        .pomorie-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+        }
+
+        .pomorie-text p {
+            line-height: 1.8;
+            color: var(--gray-text);
+            margin-bottom: 15px;
+        }
+
+        .pomorie-features {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .pomorie-features li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark-text);
+            font-size: 0.95rem;
+        }
+
+        .pomorie-features li::before {
+            content: '🌊';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .pomorie-image {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .pomorie-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 3. Услуги и Удобства */
+        .services-bg { background-color: var(--light-blue); }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .service-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
+        
+        .service-card h3 {
+            margin: 0 0 15px 0;
+            color: var(--dark-text);
+            font-size: 1.3rem;
+        }
+        
+        .service-card p { color: var(--gray-text); font-size: 0.95rem; margin: 0;}
+
+        .paid-service {
+            border: 2px solid #FFC107;
+            background-color: #FFFDF5;
+        }
+        .paid-tag {
+            background-color: #FFC107;
+            color: #333;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        /* 2. Галерия */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 300px;
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            background: #f0f0f0;
+        }
+
+        .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; } /* Първата снимка е по-голяма */
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img { transform: scale(1.08); }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption { transform: translateY(0); }
+
+        /* 4. Локация (Карта) */
+        .map-section { background-color: var(--white); padding-bottom: 0;}
+        .map-container {
+            width: 100%;
+            height: 500px;
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+        }
+        .map-container iframe { width: 100%; height: 100%; border: none; }
+
+        /* 5. Фуутър */
+        footer {
+            background-color: var(--dark-text);
+            color: var(--white);
+            padding: 60px 10%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            text-align: center;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+            text-align: center;
+        }
+        .footer-col h3 { color: var(--primary-blue); margin-bottom: 20px; }
+        .footer-col p, .footer-col a { color: #ccc; line-height: 1.8; text-decoration: none; display: block; text-align: center; }
+        .footer-col a:hover { color: var(--white); }
+        .footer-bottom {
+            width: 100%;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 20px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Анимация */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Езиков превключвател */
+        .lang-switcher {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .lang-btn {
+            background: none;
+            border: 2px solid var(--primary-blue);
+            color: var(--dark-text);
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s;
+        }
+        .lang-btn:hover { background-color: var(--light-blue); }
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            top: 110%;
+            right: 0;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            overflow: hidden;
+            min-width: 160px;
+            z-index: 1001;
+        }
+        .lang-dropdown.open { display: block; }
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 18px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--dark-text);
+            transition: background 0.2s;
+        }
+        .lang-option:hover { background-color: var(--light-blue); }
+        .lang-option.active { color: var(--primary-blue); background-color: var(--light-blue); }
+
+        /* Календар секция */
+        .calendar-section { background-color: var(--sand); }
+        .calendar-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        .calendar-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin: 0;
+            color: var(--dark-text);
+        }
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+        }
+        .calendar-nav button {
+            background: var(--light-blue);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .calendar-nav button:hover { background: var(--primary-blue); color: var(--white); }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            text-align: center;
+        }
+        .calendar-grid .day-name {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            padding: 10px 0;
+        }
+        .calendar-grid .day {
+            padding: 12px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        .calendar-grid .day:hover { background: var(--light-blue); }
+        .calendar-grid .day.today { border: 2px solid var(--primary-blue); }
+        .calendar-grid .day.selected { background: var(--primary-blue); color: var(--white); }
+        .calendar-grid .day.in-range { background: var(--light-blue); color: var(--primary-blue); }
+        .calendar-grid .day.empty { cursor: default; }
+        .calendar-grid .day.empty:hover { background: none; }
+        .calendar-grid .day.past { color: #ccc; cursor: not-allowed; opacity: 0.4; }
+        .calendar-grid .day.past:hover { background: none; }
+        .calendar-grid .day.booked { background: #ffcdd2; color: #c62828; cursor: not-allowed; text-decoration: line-through; opacity: 0.7; }
+        .calendar-grid .day.booked:hover { background: #ffcdd2; transform: none; }
+        .calendar-price-info {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--light-blue);
+            border-radius: 12px;
+        }
+        .price-per-night {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        .price-per-night-label {
+            font-size: 0.95rem;
+            color: var(--gray-text);
+        }
+        .price-total {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            display: none;
+        }
+        .price-total.visible { display: block; }
+        .calendar-dates {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .calendar-date-box {
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid var(--light-blue);
+            border-radius: 12px;
+            padding: 15px 20px;
+        }
+        .calendar-date-box label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            margin-bottom: 5px;
+        }
+        .calendar-date-box span {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--dark-text);
+        }
+        .btn-calendar-book {
+            display: block;
+            width: 100%;
+            margin-top: 25px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 15px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Nunito', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(12, 167, 137, 0.25);
+            transition: all 0.3s;
+        }
+        .btn-calendar-book:hover {
+            background: #098b72;
+            transform: translateY(-2px);
+        }
+
+        /* Админ панел */
+        .admin-panel {
+            display: none;
+            max-width: 800px;
+            margin: 30px auto 0;
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 15px;
+            padding: 25px;
+        }
+        .admin-panel.visible { display: block; }
+        .admin-panel h3 {
+            margin: 0 0 15px 0;
+            color: #e65100;
+            font-size: 1.2rem;
+        }
+        .admin-bookings { margin-top: 15px; }
+        .admin-booking-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: var(--white);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            border: 1px solid #ffe0b2;
+        }
+        .admin-booking-item span { font-weight: 600; }
+        .admin-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .admin-btn-save { background: #4caf50; color: white; }
+        .admin-btn-save:hover { background: #388e3c; }
+        .admin-btn-delete { background: #ef5350; color: white; font-size: 0.8rem; padding: 5px 12px; }
+        .admin-btn-delete:hover { background: #c62828; }
+        .admin-btn-logout { background: #78909c; color: white; }
+        .admin-btn-logout:hover { background: #546e7a; }
+        .admin-bar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .admin-login-box {
+            max-width: 400px;
+            margin: 20px auto 0;
+            text-align: center;
+        }
+        .admin-login-box input {
+            padding: 10px 15px;
+            border: 2px solid var(--light-blue);
+            border-radius: 10px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            width: 200px;
+        }
+        .admin-login-box button {
+            padding: 10px 20px;
+            margin-left: 10px;
+        }
+        .admin-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff9800;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 999;
+            display: none;
+            transition: all 0.3s;
+        }
+        .admin-toggle:hover { background: #e65100; transform: scale(1.1); }
+        .admin-toggle.visible { display: block; }
+
+        /* Мобилна версия (Responsive) */
+        @media (max-width: 900px) {
+            header { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .lang-switcher { position: absolute; right: 20px; top: 15px; }
+            .hero { padding: 0 5%; text-align: center; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            .btn-main { justify-content: center; width: 100%; box-sizing: border-box; font-size: 1rem; padding: 14px 20px; }
+            .pomorie-info { flex-direction: column; padding: 25px; margin-top: 0; gap: 25px; }
+            .pomorie-text h2 { font-size: 1.6rem; }
+            .pomorie-text p { font-size: 0.95rem; }
+            .section-title { font-size: 2rem; }
+            .section-subtitle { font-size: 0.95rem; }
+            .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+            .gallery-item:nth-child(1) { grid-column: span 1; grid-row: span 1; }
+            section { padding: 50px 5%; }
+            .calendar-wrapper { padding: 20px; }
+            .services-grid { gap: 15px; }
+            .service-card { padding: 25px 15px; }
+            footer { padding: 40px 5%; gap: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">Huoneisto Tuthon</a>
+        <div class="nav-links">
+            <a href="#about-pomorie" data-i18n="nav_about">Pomoriesta</a>
+            <a href="#services" data-i18n="nav_services">Mukavuudet</a>
+            <a href="#gallery" data-i18n="nav_gallery">Galleria</a>
+            <a href="#location" data-i18n="nav_location">Sijainti</a>
+            <a href="#booking" class="btn-book-nav" data-i18n="nav_book">Varaa päivät</a>
+        </div>
+        <div class="lang-switcher">
+            <button class="lang-btn" onclick="toggleLangDropdown()">
+                <span id="currentLangFlag">🇫🇮</span>
+                <span id="currentLangName">FI</span>
+                <span>▾</span>
+            </button>
+            <div class="lang-dropdown" id="langDropdown">
+                <div class="lang-option" onclick="setLanguage('bg')">
+                    <span>🇧🇬</span> Български
+                </div>
+                <div class="lang-option" onclick="setLanguage('en')">
+                    <span>🇬🇧</span> English
+                </div>
+                <div class="lang-option" onclick="setLanguage('ru')">
+                    <span>🇷🇺</span> Русский
+                </div>
+                <div class="lang-option active" onclick="setLanguage('fi')">
+                    <span>🇫🇮</span> Suomi
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 data-i18n="hero_title">Tervetuloa <span>kesäpakopaikkaan</span> Pomoriessa</h1>
+            <p data-i18n="hero_text">Valoisa ja viihtyisä asuntomme sijaitsee vain muutaman askeleen päässä rannasta. Täydellinen paikka perhelomalle, joka on täynnä aurinkoa, merituulta ja täydellistä rentoutumista.</p>
+            <a href="#booking" class="btn-main">
+                <span data-i18n="hero_btn">Varaa nyt</span>
+
+            </a>
+        </div>
+    </section>
+
+    <section id="about-pomorie" style="padding-top: 0;">
+        <div class="pomorie-info">
+            <div class="pomorie-text">
+                <h2 data-i18n="pomorie_title">Pomorien viehätys</h2>
+                <p data-i18n="pomorie_text1">Parantavaa mutaa, rantoja, viinitiloja ja eloisa kesätunnelma. Pomorie on rentoutumista ja seikkailua samassa paikassa.</p>
+                <ul class="pomorie-features">
+                    <li data-i18n="pomorie_f1">Hienoa hiekkaa ja turvalliset rannat</li>
+                    <li data-i18n="pomorie_f2">Pomorien muta, suolajärvet ja viinitilat</li>
+                    <li data-i18n="pomorie_f3">Rantapromenadi, ravintolat ja yöelämä</li>
+                    <li data-i18n="pomorie_f4">Vesiurheilu ja lasten aktiviteetit</li>
+                </ul>
+            </div>
+            <div class="pomorie-image">
+                <img src="img/272_compass-pomorie-with-the-latest-attraction-trains-in-Europe.png" alt="Поморие">
+            </div>
+        </div>
+    </section>
+
+        <!-- Apartment Description Section (Multilingual) -->
+        <section id="apartment-description">
+            <h2 class="section-title" data-i18n="apt_title">Апартамент 4+1 до плажа</h2>
+            <div class="section-subtitle" data-i18n="apt_location">Апартаментът се намира в стария град на Поморие, само на няколко метра от плажа. Поморие е красив морски град на българското Черноморие, известен със своите лечебни кални бани и прекрасни плажове.</div>
+            <div class="apt-desc-block" id="aptDescBlock"></div>
+        </section>
+        <script>
+        // Apartment description paragraphs for all languages (full, detailed, as provided by user)
+        const aptDescParagraphs = {
+            
+        };
+        function renderAptDescBlock(lang) {
+            const block = document.getElementById('aptDescBlock');
+            if (!block) return;
+            block.innerHTML = '';
+            (aptDescParagraphs[lang] || aptDescParagraphs['bg']).forEach(function(item) {
+                const p = document.createElement('p');
+                p.innerHTML = item;     
+                block.appendChild(p);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+    // Set all i18n elements to the default language on load
+    const t = translations[currentLang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.innerHTML = t[key];
+    });
+    renderAptDescBlock(currentLang || 'bg');
+});
+    </script>
+
+    <section id="gallery">
+        <h2 class="section-title" data-i18n="gallery_title">Kurkista sisään</h2>
+        <p class="section-subtitle" data-i18n="gallery_subtitle">Valoisa, moderni ja luotu rakkaudella yksityiskohtiin.</p>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="img/1776461107280.jpg" alt="Всекидневна">
+                <div class="gallery-caption" data-i18n="gal_living">Olohuone kulmasohvalla</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/1776461107183.jpg" alt="Makuuhuone">
+                <div class="gallery-caption" data-i18n="gal_bedroom">Makuuhuone parisängyllä</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/1776461107151.jpg" alt="Keittiö">
+                <div class="gallery-caption" data-i18n="gal_kitchen">Täysin varusteltu keittiö</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/1776461107217.jpg" alt="Kylpyhuone">
+                <div class="gallery-caption" data-i18n="gal_bathroom">Kylpyhuone pesukoneella</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/1776461107248.jpg" alt="Ruokailutila">
+                <div class="gallery-caption" data-i18n="gal_dining">Ruokailutila terassin käynti</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/1776461107112.jpg" alt="Makuuhuone 2">
+                <div class="gallery-caption" data-i18n="gal_bedroom2">Makuuhuone kahdella sängyllä</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="calendar-section">
+        <h2 class="section-title" data-i18n="booking_title">Varaa majoituksesi</h2>
+        <p class="section-subtitle" data-i18n="booking_subtitle">Valitse sisäänkirjautumis- ja uloskirjautumispäivät kalenterista.</p>
+        <div class="calendar-wrapper">
+            <div class="calendar-price-info">
+                <div class="price-per-night" id="pricePerNightDisplay">60-65 € <span style="font-size:0.5em;font-weight:400;color:var(--gray-text)" data-i18n="cal_price_label">/ per yö</span></div>
+            </div>
+            <div class="calendar-header">
+                <h3 id="calendarMonthYear"></h3>
+                <div class="calendar-nav">
+                    <button onclick="changeMonth(-1)">‹</button>
+                    <button onclick="changeMonth(1)">›</button>
+                </div>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+            <div class="calendar-dates">
+                <div class="calendar-date-box">
+                    <label data-i18n="cal_checkin">Sisäänkirjautuminen</label>
+                    <span id="checkinDate" data-i18n="cal_pick">— Valitse —</span>
+                </div>
+                <div class="calendar-date-box">
+                    <label data-i18n="cal_checkout">Uloskirjautuminen</label>
+                    <span id="checkoutDate" data-i18n="cal_pick">— Valitse —</span>
+                </div>
+            </div>
+            <button class="btn-calendar-book" data-i18n="cal_book_btn" onclick="bookDates()">Varaa päivät</button>
+
+            <!-- Админ логин -->
+            <div class="admin-login-box" id="adminLoginBox" style="display:none;">
+                <input type="password" id="adminPassInput" placeholder="Парола...">
+                <button class="admin-btn admin-btn-save" onclick="adminLogin()">Вход</button>
+            </div>
+
+            <!-- Админ панел -->
+            <div class="admin-panel" id="adminPanel">
+                <h3>🔧 Админ панел — Управление на резервации</h3>
+                <p style="color:#666;font-size:0.9rem;margin:0 0 15px;">Изберете дати от календара и натиснете "Запази като заето". Денят на заминаване също се маркира.</p>
+                <div class="admin-bar">
+                    <button class="admin-btn admin-btn-save" onclick="adminSaveBooking()">✓ Запази като заето</button>
+                    <button class="admin-btn admin-btn-logout" onclick="adminLogout()">Изход от админ</button>
+                </div>
+                <div class="admin-bookings" id="adminBookingsList"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="location" class="map-section">
+        <h2 class="section-title" data-i18n="location_title">Missä olemme</h2>
+        <p class="section-subtitle" data-i18n="location_subtitle">Muutaman askeleen päässä rannasta ja Pomorien keskusnähtävyyksistä.</p>
+        
+        <div class="map-container">
+            <iframe src="https://maps.google.com/maps?q=%D1%83%D0%BB.+%D0%A2%D1%83%D1%82%D1%85%D0%BE%D0%BD+8,+%D0%9F%D0%BE%D0%BC%D0%BE%D1%80%D0%B8%D0%B5,+%D0%91%D1%8A%D0%BB%D0%B3%D0%B0%D1%80%D0%B8%D1%8F&t=&z=17&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-col">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--white);">Huoneisto Tuthon</h3>
+            <p data-i18n="footer_desc">Paikkasi täydelliselle merilomalle Pomorien sydämessä.</p>
+        </div>
+        
+        <div class="footer-col">
+            <h3 data-i18n="footer_contacts">Yhteystiedot</h3>
+            <p>📍 Tuthon 8, Pomorie, Bulgaria</p>
+        </div>
+
+        <div class="footer-col">
+            <h3 data-i18n="footer_links">Pikalinkit</h3>
+            <a href="#about-pomorie" data-i18n="footer_link_city">Kaupungista</a>
+            <a href="#services" data-i18n="footer_link_services">Mukavuudet ja pysäköinti</a>
+            <a href="#gallery" data-i18n="footer_link_photos">Kuvat</a>
+            <a href="#location" data-i18n="footer_link_map">Kartta ja sijainti</a>
+        </div>
+
+        <div class="footer-bottom">
+            <p data-i18n="footer_copy">&copy; 2026 Huoneisto Tuthon Pomorie. Kaikki oikeudet pidätetään.</p>
+        </div>
+    </footer>
+
+    <!-- Админ бутон (видим само за знаещите) -->
+    <button class="admin-toggle" id="adminToggleBtn" onclick="showAdminLogin()" title="Admin">⚙</button>
+
+<script>
+// ===== TRANSLATIONS =====
+const translations = {
+    bg: {
+    apt_title: 'Апартамент 4+1 до плажа',
+    apt_location: 'Апартамент на една минута от плажа и на 5 минути от центъра на гр. Поморие. Поморие е красив морски град, разположен на българското Черноморие, известен със своите лечебни кални бани и прекрасни плажове. Подходящ за настаняване 4 човека. Допълнително настаняване на 5-ти човек – по договаряне. Апартаментът е в стария град на Поморие и e разположен само на няколко метра от плажа. Разполага с две стаи – едната с две самостоятелни легла, другата стая е със спалня. Разполага с разтегателен диван и оборудвана кухня с кухненска маса. Има тераса с маса и столове. Климатик, телевизия, микровълнова фурна, интернет. Кухня с фурна, котлон, аспиратор, хладилник, съдове за готвене, чинии, прибори за хранене, чаши. Съдомиялна, перална със сушилня, кана за вода. Ютия и маса за гладене. Спалня с тоалетка и огледало. Баня с душ кабина. Поставка за обувки и портманто. Апартаментът е с 4+1 места за настаняване. Заповядайте!',
+        nav_about: 'За Поморие', nav_services: 'Удобства', nav_gallery: 'Галерия',
+        nav_location: 'Локация', nav_book: 'Запази дати',
+        hero_title: 'Добре дошли във Вашето <span>лятно убежище</span> в Поморие',
+        hero_text: 'Нашият светъл и уютен апартамент се намира само на метри от плажа. Перфектното място за вашата семейна почивка, изпълнена със слънце, морски бриз и пълен релакс.',
+        hero_btn: 'Резервирайте сега',
+        pomorie_title: 'Очарованието на град Поморие',
+        pomorie_text1: 'Лечебна кал, плажове, винарни и жива лятна атмосфера. Поморие е релакс и приключения на едно място.',
+        pomorie_f1: 'Фин пясък и безопасни плажове',
+        pomorie_f2: 'Поморийска кал, солници и винарни',
+        pomorie_f3: 'Крайбрежна алея, ресторанти и нощен живот',
+        pomorie_f4: 'Водни спортове и детски атракциони',
+        services_title: 'Всичко за вашия комфорт',
+        services_subtitle: 'Погрижили сме се да не ви липсва нищо по време на престоя. Апартаментът е напълно оборудван за дълги и кратки почивки.',
+        svc_ac: 'Климатизация', svc_ac_desc: 'Прохлада във всяка стая през горещите летни дни.',
+        svc_wifi: 'Бърз Wi-Fi', svc_wifi_desc: 'Безплатен и надежден интернет за вашата работа или забавление.',
+        svc_kitchen: 'Кухня', svc_kitchen_desc: 'Напълно оборудвана с уреди и посуда за приготвяне на домашна храна.',
+        svc_tv: 'Телевизия', svc_tv_desc: 'Плосък телевизор с множество кабелни канали за почивка вечер.',
+        svc_terrace: 'Тераса', svc_terrace_desc: 'Уютен балкон, идеален за сутрешното ви кафе с полъх на море.',
+        svc_paid_tag: 'Заплаща се допълнително',
+        svc_parking: 'Частен Паркинг', svc_parking_desc: 'Предлагаме запазено паркомясто в близост до сградата. Изисква се предварителна заявка.',
+        gallery_title: 'Надникнете вътре', gallery_subtitle: 'Светъл, модерен и създаден с любов към детайла.',
+        gal_living: 'Всекидневна с ъглов диван', gal_bedroom: 'Спалня с двойно легло', gal_kitchen: 'Напълно оборудвана кухня', gal_bathroom: 'Баня с пералня', gal_dining: 'Трапезария с изход към терасата', gal_bedroom2: 'Спалня с две легла', gal_kitchen2: 'Кухненски кът с трапезна маса',
+        booking_title: 'Резервирайте вашия престой', booking_subtitle: 'Изберете дати за настаняване и напускане от календара.',
+        cal_checkin: 'Настаняване', cal_checkout: 'Напускане', cal_pick: '— Изберете —', cal_book_btn: 'Запази дати',
+        cal_price_label: '/ на вечер', cal_nights: 'нощувки', cal_total: 'Общо',
+        location_title: 'Къде се намираме', location_subtitle: 'На крачки от плажа и централните атракции на Поморие.',
+        footer_desc: 'Вашето място за съвършената морска почивка в сърцето на град Поморие.',
+        footer_contacts: 'Контакти', footer_links: 'Бързи връзки',
+        footer_link_city: 'За града', footer_link_services: 'Удобства и Паркинг', footer_link_photos: 'Снимки', footer_link_map: 'Карта и Локация',
+        footer_copy: '&copy; 2026 Huoneisto Tuthon Pomorie. Всички права запазени.',
+        dayNames: ['Пн','Вт','Ср','Чт','Пт','Сб','Нд'],
+        monthNames: ['Януари','Февруари','Март','Април','Май','Юни','Юли','Август','Септември','Октомври','Ноември','Декември']
+    },
+    en: {
+        apt_title: 'Apartment 4+1 by the Beach',
+        apt_location: 'Apartment just one minute from the beach and five minutes from the center of Pomorie. Pomorie is a beautiful seaside town on the Bulgarian Black Sea coast, famous for its healing mud baths and wonderful beaches. Suitable for 4 guests. Additional accommodation for a 5th person – upon request. The apartment is in the old town of Pomorie, just a few meters from the beach. There are two rooms – one with two single beds, the other with a double bed. There is a sofa bed and a fully equipped kitchen with a dining table. There is a terrace with a table and chairs. Air conditioning, TV, microwave oven, internet. Kitchen with oven, stove, extractor, fridge, cookware, plates, cutlery, glasses. Dishwasher, washing machine with dryer, electric kettle. Iron and ironing board. Bedroom with dressing table and mirror. Bathroom with shower cabin. Shoe rack and coat rack. The apartment accommodates 4+1 guests. Welcome!',
+        nav_about: 'About Pomorie', nav_services: 'Amenities', nav_gallery: 'Gallery',
+        nav_location: 'Location', nav_book: 'Book dates',
+        hero_title: 'Welcome to Your <span>Summer Retreat</span> in Pomorie',
+        hero_text: 'Our bright and cozy apartment is located just steps from the beach. The perfect place for your family vacation, filled with sunshine, sea breeze and total relaxation.',
+        hero_btn: 'Book now',
+        pomorie_title: 'The Charm of Pomorie',
+        pomorie_text1: 'Healing mud, beaches, wineries and a vibrant summer vibe. Pomorie is relaxation and adventure in one place.',
+        pomorie_f1: 'Fine sand and safe beaches',
+        pomorie_f2: 'Pomorie mud, salt pans and wineries',
+        pomorie_f3: 'Waterfront promenade, restaurants and nightlife',
+        pomorie_f4: 'Water sports and kids attractions',
+        services_title: 'Everything for Your Comfort',
+        services_subtitle: 'We have taken care that you lack nothing during your stay. The apartment is fully equipped for long and short vacations.',
+        svc_ac: 'Air Conditioning', svc_ac_desc: 'Cool air in every room during the hot summer days.',
+        svc_wifi: 'Fast Wi-Fi', svc_wifi_desc: 'Free and reliable internet for your work or entertainment.',
+        svc_kitchen: 'Kitchen', svc_kitchen_desc: 'Fully equipped with appliances and utensils for preparing home-cooked meals.',
+        svc_tv: 'Television', svc_tv_desc: 'Flat-screen TV with numerous cable channels for evening relaxation.',
+        svc_terrace: 'Terrace', svc_terrace_desc: 'Cozy balcony, perfect for your morning coffee with a sea breeze.',
+        svc_paid_tag: 'Additional charge',
+        svc_parking: 'Private Parking', svc_parking_desc: 'We offer a reserved parking spot near the building. Prior reservation required.',
+        gallery_title: 'Take a Peek Inside', gallery_subtitle: 'Bright, modern and created with attention to detail.',
+        gal_living: 'Living room with corner sofa', gal_bedroom: 'Bedroom with double bed', gal_kitchen: 'Fully equipped kitchen', gal_bathroom: 'Bathroom with washing machine', gal_dining: 'Dining area with terrace access', gal_bedroom2: 'Bedroom with twin beds', gal_kitchen2: 'Kitchen corner with dining table',
+        booking_title: 'Book Your Stay', booking_subtitle: 'Select check-in and check-out dates from the calendar.',
+        cal_checkin: 'Check-in', cal_checkout: 'Check-out', cal_pick: '— Select —', cal_book_btn: 'Book dates',
+        cal_price_label: '/ per night', cal_nights: 'nights', cal_total: 'Total',
+        location_title: 'Where We Are', location_subtitle: 'Steps away from the beach and Pomorie\'s central attractions.',
+        footer_desc: 'Your place for the perfect seaside vacation in the heart of Pomorie.',
+        footer_contacts: 'Contacts', footer_links: 'Quick Links',
+        footer_link_city: 'About the city', footer_link_services: 'Amenities & Parking', footer_link_photos: 'Photos', footer_link_map: 'Map & Location',
+        footer_copy: '&copy; 2026 Huoneisto Tuthon Pomorie. All rights reserved.',
+        dayNames: ['Mo','Tu','We','Th','Fr','Sa','Su'],
+        monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December']
+    },
+    ru: {
+        apt_title: 'Апартамент 4+1 у пляжа',
+        apt_location: 'Апартамент в одной минуте от пляжа и в пяти минутах от центра города Поморие. Поморие — красивый курортный город на болгарском Черноморском побережье, известный своими целебными грязями и прекрасными пляжами. Подходит для размещения 4 человек. Дополнительное размещение 5-го гостя – по договорённости. Апартамент находится в старом городе Поморие, всего в нескольких метрах от пляжа. В апартаменте две комнаты: одна с двумя односпальными кроватями, другая с двуспальной кроватью. Есть раскладной диван и полностью оборудованная кухня с обеденным столом. Есть терраса с столом и стульями. Кондиционер, телевизор, микроволновая печь, интернет. Кухня с духовкой, плитой, вытяжкой, холодильником, посудой, тарелками, столовыми приборами, стаканами. Посудомоечная машина, стиральная машина с сушкой, электрочайник. Утюг и гладильная доска. Спальня с туалетным столиком и зеркалом. Ванная комната с душевой кабиной. Обувница и вешалка. Апартамент рассчитан на 4+1 гостей. Добро пожаловать!',
+        nav_about: 'О Поморие', nav_services: 'Удобства', nav_gallery: 'Галерея',
+        nav_location: 'Расположение', nav_book: 'Забронировать',
+        hero_title: 'Добро пожаловать в Ваш <span>летний уголок</span> в Поморие',
+        hero_text: 'Наша светлая и уютная квартира расположена всего в нескольких шагах от пляжа. Идеальное место для семейного отдыха, наполненного солнцем, морским бризом и полным расслаблением.',
+        hero_btn: 'Забронировать',
+        pomorie_title: 'Очарование города Поморие',
+        pomorie_text1: 'Лечебная грязь, пляжи, винодельни и яркая летняя атмосфера. Поморие — отдых и приключения в одном месте.',
+        pomorie_f1: 'Мелкий песок и безопасные пляжи',
+        pomorie_f2: 'Поморийская грязь, солеварни и винодельни',
+        pomorie_f3: 'Набережная, рестораны и ночная жизнь',
+        pomorie_f4: 'Водные виды спорта и детские аттракционы',
+        services_title: 'Всё для вашего комфорта',
+        services_subtitle: 'Мы позаботились, чтобы вам ничего не недоставало во время пребывания. Квартира полностью оборудована для длительного и краткого отдыха.',
+        svc_ac: 'Кондиционер', svc_ac_desc: 'Прохлада в каждой комнате в жаркие летние дни.',
+        svc_wifi: 'Быстрый Wi-Fi', svc_wifi_desc: 'Бесплатный и надёжный интернет для работы или развлечений.',
+        svc_kitchen: 'Кухня', svc_kitchen_desc: 'Полностью оборудована техникой и посудой для приготовления домашней еды.',
+        svc_tv: 'Телевизор', svc_tv_desc: 'Плоский телевизор с множеством кабельных каналов для вечернего отдыха.',
+        svc_terrace: 'Терраса', svc_terrace_desc: 'Уютный балкон, идеальный для утреннего кофе с морским бризом.',
+        svc_paid_tag: 'Оплачивается дополнительно',
+        svc_parking: 'Частная парковка', svc_parking_desc: 'Предлагаем зарезервированное парковочное место рядом со зданием. Требуется предварительная заявка.',
+        gallery_title: 'Загляните внутрь', gallery_subtitle: 'Светлый, современный и созданный с любовью к деталям.',
+        gal_living: 'Гостиная с угловым диваном', gal_bedroom: 'Спальня с двуспальной кроватью', gal_kitchen: 'Полностью оборудованная кухня', gal_bathroom: 'Ванная со стиральной машиной', gal_dining: 'Столовая с выходом на террасу', gal_bedroom2: 'Спальня с двумя кроватями', gal_kitchen2: 'Кухонный уголок со столом',
+        booking_title: 'Забронируйте ваш отдых', booking_subtitle: 'Выберите даты заселения и выезда из календаря.',
+        cal_checkin: 'Заселение', cal_checkout: 'Выезд', cal_pick: '— Выберите —', cal_book_btn: 'Забронировать даты',
+        cal_price_label: '/ за ночь', cal_nights: 'ночей', cal_total: 'Итого',
+        location_title: 'Где мы находимся', location_subtitle: 'В нескольких шагах от пляжа и центральных достопримечательностей Поморие.',
+        footer_desc: 'Ваше место для идеального морского отдыха в сердце города Поморие.',
+        footer_contacts: 'Контакты', footer_links: 'Быстрые ссылки',
+        footer_link_city: 'О городе', footer_link_services: 'Удобства и парковка', footer_link_photos: 'Фотографии', footer_link_map: 'Карта и расположение',
+        footer_copy: '&copy; 2026 Huoneisto Tuthon Pomorie. Все права защищены.',
+        dayNames: ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'],
+        monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь']
+    },
+        fi: {
+            apt_title: 'Huoneisto 4+1 rannalla',
+        apt_location: 'Huoneisto vain minuutin päässä rannasta ja viiden minuutin päässä Pomorien keskustasta. Pomorie on kaunis bulgarialainen merenrantakaupunki Mustanmeren rannalla, joka tunnetaan parantavista mutakylvyistään ja upeista rannoistaan. Sopii 4 hengelle. Lisämajoitus 5. henkilölle – sopimuksen mukaan. Huoneisto on Pomorien vanhassakaupungissa, vain muutaman askeleen päässä rannasta. Kaksi huonetta – toisessa kaksi erillistä vuodetta, toisessa parisänky. Vuodesohva ja täysin varusteltu keittiö ruokapöydällä. Parveke, jossa pöytä ja tuolit. Ilmastointi, televisio, mikroaaltouuni, internet. Keittiö: uuni, liesi, liesituuletin, jääkaappi, ruoanlaittovälineet, lautaset, ruokailuvälineet, lasit. Astianpesukone, pesukone ja kuivausrumpu, vedenkeitin. Silitysrauta ja -lauta. Makuuhuoneessa kampauspöytä ja peili. Kylpyhuone suihkukaapilla. Kenkäteline ja naulakko. Huoneistossa on 4+1 vuodepaikkaa. Tervetuloa!',
+        nav_about: 'Pomoriesta', nav_services: 'Mukavuudet', nav_gallery: 'Galleria',
+        nav_location: 'Sijainti', nav_book: 'Varaa päivät',
+        hero_title: 'Tervetuloa <span>kesäpakopaikkaan</span> Pomoriessa',
+        hero_text: 'Valoisa ja viihtyisä asuntomme sijaitsee vain muutaman askeleen päässä rannasta. Täydellinen paikka perhelomalle, joka on täynnä aurinkoa, merituulta ja täydellistä rentoutumista.',
+        hero_btn: 'Varaa nyt',
+        pomorie_title: 'Pomorien viehätys',
+        pomorie_text1: 'Parantavaa mutaa, rantoja, viinitiloja ja eloisa kesätunnelma. Pomorie on rentoutumista ja seikkailua samassa paikassa.',
+        pomorie_f1: 'Hienoa hiekkaa ja turvalliset rannat',
+        pomorie_f2: 'Pomorien muta, suolajärvet ja viinitilat',
+        pomorie_f3: 'Rantapromenadi, ravintolat ja yöelämä',
+        pomorie_f4: 'Vesiurheilu ja lasten aktiviteetit',
+        services_title: 'Kaikki mukavuutesi',
+        services_subtitle: 'Olemme huolehtineet, ettei sinulta puutu mitään oleskelun aikana. Asunto on täysin varusteltu pitkille ja lyhyille lomille.',
+        svc_ac: 'Ilmastointi', svc_ac_desc: 'Viileää ilmaa jokaisessa huoneessa kuumina kesäpäivinä.',
+        svc_wifi: 'Nopea Wi-Fi', svc_wifi_desc: 'Ilmainen ja luotettava internet työtä tai viihdettä varten.',
+        svc_kitchen: 'Keittiö', svc_kitchen_desc: 'Täysin varusteltu kodinkoneilla ja astioilla kotiruoan valmistukseen.',
+        svc_tv: 'Televisio', svc_tv_desc: 'Taulutelevisio monilla kaapelikanavilla illan rentoutumiseen.',
+        svc_terrace: 'Terassi', svc_terrace_desc: 'Viihtyisä parveke, täydellinen aamukahville merituulen kanssa.',
+        svc_paid_tag: 'Lisämaksu',
+        svc_parking: 'Yksityinen pysäköinti', svc_parking_desc: 'Tarjoamme varatun pysäköintipaikan rakennuksen lähellä. Ennakkovaraus vaaditaan.',
+        gallery_title: 'Kurkista sisään', gallery_subtitle: 'Valoisa, moderni ja luotu rakkaudella yksityiskohtiin.',
+        gal_living: 'Olohuone kulmasohvalla', gal_bedroom: 'Makuuhuone parisängyllä', gal_kitchen: 'Täysin varusteltu keittiö', gal_bathroom: 'Kylpyhuone pesukoneella', gal_dining: 'Ruokailutila terassin käynti', gal_bedroom2: 'Makuuhuone kahdella sängyllä', gal_kitchen2: 'Keittiönurkkaus ruokapöydällä',
+        booking_title: 'Varaa majoituksesi', booking_subtitle: 'Valitse sisäänkirjautumis- ja uloskirjautumispäivät kalenterista.',
+        cal_checkin: 'Sisäänkirjautuminen', cal_checkout: 'Uloskirjautuminen', cal_pick: '— Valitse —', cal_book_btn: 'Varaa päivät',
+        cal_price_label: '/ per yö', cal_nights: 'yötä', cal_total: 'Yhteensä',
+        location_title: 'Missä olemme', location_subtitle: 'Muutaman askeleen päässä rannasta ja Pomorien keskusnähtävyyksistä.',
+        footer_desc: 'Paikkasi täydelliselle merilomalle Pomorien sydämessä.',
+        footer_contacts: 'Yhteystiedot', footer_links: 'Pikalinkit',
+        footer_link_city: 'Kaupungista', footer_link_services: 'Mukavuudet ja pysäköinti', footer_link_photos: 'Kuvat', footer_link_map: 'Kartta ja sijainti',
+        footer_copy: '&copy; 2026 Huoneisto Tuthon Pomorie. Kaikki oikeudet pidätetään.',
+        dayNames: ['Ma','Ti','Ke','To','Pe','La','Su'],
+        monthNames: ['Tammikuu','Helmikuu','Maaliskuu','Huhtikuu','Toukokuu','Kesäkuu','Heinäkuu','Elokuu','Syyskuu','Lokakuu','Marraskuu','Joulukuu']
+    }
+};
+
+const langFlags = { bg: '🇧🇬', en: '🇬🇧', ru: '🇷🇺', fi: '🇫🇮' };
+const langCodes = { bg: 'BG', en: 'EN', ru: 'RU', fi: 'FI' };
+let currentLang = 'fi';
+
+function toggleLangDropdown() {
+    document.getElementById('langDropdown').classList.toggle('open');
+}
+
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.lang-switcher')) {
+        document.getElementById('langDropdown').classList.remove('open');
+    }
+});
+
+function setLanguage(lang) {
+    currentLang = lang;
+    document.getElementById('currentLangFlag').textContent = langFlags[lang];
+    document.getElementById('currentLangName').textContent = langCodes[lang];
+    document.documentElement.lang = lang;
+    
+    document.querySelectorAll('.lang-option').forEach(function(el) { el.classList.remove('active'); });
+    document.querySelector('.lang-option[onclick="setLanguage(\'' + lang + '\')"]').classList.add('active');
+    document.getElementById('langDropdown').classList.remove('open');
+
+    const t = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.innerHTML = t[key];
+    });
+
+    // Render apartment description list
+    renderAptDescBlock(lang);
+
+    // Reset calendar date display if not selected
+    if (!checkinDate) document.getElementById('checkinDate').textContent = t.cal_pick;
+    if (!checkoutDate) document.getElementById('checkoutDate').textContent = t.cal_pick;
+
+    renderCalendar();
+}
+
+// ===== CALENDAR =====
+function getPriceForDate(date) {
+    const m = date.getMonth(); // 0-based: 5=June, 6=July, 7=Aug, 8=Sep
+    if (m === 5 || m === 6) return 65; // June, July
+    if (m === 7 || m === 8) return 60; // August, September
+    return 60; // default
+}
+
+function calcTotalPrice(from, to) {
+    let total = 0;
+    const d = new Date(from);
+    while (d < to) {
+        total += getPriceForDate(d);
+        d.setDate(d.getDate() + 1);
+    }
+    return total;
+}
+
+function isOffSeason(date) {
+    const m = date.getMonth(); // 0=Jan, 9=Oct
+    // Off-season: October (9) through April (3)
+    return m >= 9 || m <= 3;
+}
+
+const ADMIN_PASSWORD = 'leten2026'; // Сменете с ваша парола
+let calYear, calMonth;
+let checkinDate = null;
+let checkoutDate = null;
+let isAdmin = false;
+let bookedRanges = []; // [{from: '2026-04-23', to: '2026-04-27'}, ...]
+
+// Хардкоднати запазени дати
+const hardcodedBookings = [
+    {from: '2026-07-11', to: '2026-07-15'},
+    {from: '2026-07-26', to: '2026-08-02'},
+    {from: '2026-08-10', to: '2026-08-14'}
+];
+
+// Зареждане на резервации от localStorage
+function loadBookings() {
+    try {
+        const saved = localStorage.getItem('bookedRanges');
+        if (saved) bookedRanges = JSON.parse(saved);
+    } catch(e) { bookedRanges = []; }
+    // Добавяне на хардкоднати резервации ако не съществуват вече
+    for (const hb of hardcodedBookings) {
+        const exists = bookedRanges.some(r => r.from === hb.from && r.to === hb.to);
+        if (!exists) bookedRanges.push(hb);
+    }
+}
+
+function saveBookings() {
+    localStorage.setItem('bookedRanges', JSON.stringify(bookedRanges));
+}
+
+function dateToStr(d) {
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+function isDateBooked(date) {
+    if (isOffSeason(date)) return true;
+    const ds = dateToStr(date);
+    for (let r of bookedRanges) {
+        if (ds >= r.from && ds <= r.to) return true;
+    }
+    return false;
+}
+
+function hasBookedInRange(from, to) {
+    const d = new Date(from);
+    const end = new Date(to);
+    while (d <= end) {
+        if (isDateBooked(d)) return true;
+        d.setDate(d.getDate() + 1);
+    }
+    return false;
+}
+
+function initCalendar() {
+    loadBookings();
+    calYear = 2026;
+    calMonth = 4; // Май (0-based)
+    // Показване на админ бутона при тройно кликване на логото
+    document.querySelector('.logo').addEventListener('dblclick', function(e) {
+        e.preventDefault();
+        document.getElementById('adminToggleBtn').classList.add('visible');
+    });
+    renderCalendar();
+    renderAdminBookings();
+}
+
+function changeMonth(dir) {
+    calMonth += dir;
+    if (calMonth > 11) { calMonth = 0; calYear++; }
+    if (calMonth < 0) { calMonth = 11; calYear--; }
+    renderCalendar();
+}
+
+function renderCalendar() {
+    const t = translations[currentLang];
+    document.getElementById('calendarMonthYear').textContent = t.monthNames[calMonth] + ' ' + calYear;
+
+    const grid = document.getElementById('calendarGrid');
+    grid.innerHTML = '';
+
+    t.dayNames.forEach(function(d) {
+        const span = document.createElement('div');
+        span.className = 'day-name';
+        span.textContent = d;
+        grid.appendChild(span);
+    });
+
+    const firstDay = new Date(calYear, calMonth, 1).getDay();
+    const startDay = firstDay === 0 ? 6 : firstDay - 1;
+    const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    for (let i = 0; i < startDay; i++) {
+        const empty = document.createElement('div');
+        empty.className = 'day empty';
+        grid.appendChild(empty);
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+        const dayEl = document.createElement('div');
+        dayEl.className = 'day';
+        dayEl.textContent = d;
+
+        const thisDate = new Date(calYear, calMonth, d);
+        const booked = isDateBooked(thisDate);
+        const isPast = thisDate < today;
+
+        if (thisDate.toDateString() === today.toDateString()) dayEl.classList.add('today');
+
+        if (isPast && !isAdmin) {
+            dayEl.classList.add('past');
+        } else if (booked && !isAdmin) {
+            dayEl.classList.add('booked');
+        } else {
+            if (checkinDate && thisDate.toDateString() === checkinDate.toDateString()) dayEl.classList.add('selected');
+            if (checkoutDate && thisDate.toDateString() === checkoutDate.toDateString()) dayEl.classList.add('selected');
+            if (checkinDate && checkoutDate && thisDate > checkinDate && thisDate < checkoutDate) dayEl.classList.add('in-range');
+
+            dayEl.addEventListener('click', function() { selectDate(thisDate); });
+        }
+
+        if (booked && isAdmin) {
+            dayEl.classList.add('booked');
+            dayEl.addEventListener('click', function() { selectDate(thisDate); });
+        }
+
+        grid.appendChild(dayEl);
+    }
+
+    updatePriceDisplay();
+}
+
+function formatDate(date) {
+    const dd = String(date.getDate()).padStart(2, '0');
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    return dd + '.' + mm + '.' + date.getFullYear();
+}
+
+function countNights(from, to) {
+    const diff = to.getTime() - from.getTime();
+    return Math.round(diff / (1000 * 60 * 60 * 24));
+}
+
+function updatePriceDisplay() {
+    const t = translations[currentLang];
+    const totalEl = document.getElementById('priceTotal');
+    if (checkinDate && checkoutDate) {
+        const nights = countNights(checkinDate, checkoutDate);
+        const total = calcTotalPrice(checkinDate, checkoutDate);
+        totalEl.textContent = nights + ' ' + t.cal_nights + ' = ' + total + ' € ' + t.cal_total;
+        totalEl.classList.add('visible');
+    } else {
+        totalEl.classList.remove('visible');
+    }
+}
+
+function selectDate(date) {
+    if (!checkinDate || (checkinDate && checkoutDate)) {
+        checkinDate = date;
+        checkoutDate = null;
+        document.getElementById('checkinDate').textContent = formatDate(date);
+        document.getElementById('checkoutDate').textContent = translations[currentLang].cal_pick;
+    } else {
+        if (date <= checkinDate) {
+            checkinDate = date;
+            document.getElementById('checkinDate').textContent = formatDate(date);
+        } else {
+            // Проверка дали в избрания диапазон има заети дни (само за не-админи)
+            if (!isAdmin && hasBookedInRange(checkinDate, date)) {
+                const msgs = { bg: 'В избрания период има заети дни!', en: 'There are booked days in the selected period!', ru: 'В выбранном периоде есть занятые дни!', fi: 'Valitussa jaksossa on varattuja päiviä!' };
+                alert(msgs[currentLang]);
+                return;
+            }
+            checkoutDate = date;
+            document.getElementById('checkoutDate').textContent = formatDate(date);
+        }
+    }
+    renderCalendar();
+}
+
+const FB_PAGE_ID = '100070018063785';
+
+function bookDates() {
+    if (checkinDate && checkoutDate) {
+        const nights = countNights(checkinDate, checkoutDate);
+        const total = calcTotalPrice(checkinDate, checkoutDate);
+        const t = translations[currentLang];
+        const dates = formatDate(checkinDate) + ' - ' + formatDate(checkoutDate);
+        const bgLine = 'Здравейте! Искам да попитам за ' + dates + ' (' + nights + ' нощувки), свободно ли е?';
+        const msgs = {
+            bg: bgLine,
+            en: 'Hello! I would like to ask about ' + dates + ' (' + nights + ' nights), is it available?\n' + bgLine,
+            ru: 'Здравствуйте! Хотел(а) бы спросить про ' + dates + ' (' + nights + ' ночей), свободно ли?\n' + bgLine,
+            fi: 'Hei! Haluaisin kysyä ' + dates + ' (' + nights + ' yötä), onko vapaana?\n' + bgLine
+        };
+        const message = msgs[currentLang];
+        navigator.clipboard.writeText(message).then(function() {
+            const clipAlerts = {
+                bg: 'Съобщението е копирано! Поставете го (Ctrl+V) в чата на Messenger.',
+                en: 'Message copied! Paste it (Ctrl+V) in the Messenger chat.',
+                ru: 'Сообщение скопировано! Вставьте его (Ctrl+V) в чат Messenger.',
+                fi: 'Viesti kopioitu! Liitä se (Ctrl+V) Messenger-chattiin.'
+            };
+            alert(clipAlerts[currentLang]);
+            window.open('https://m.me/' + FB_PAGE_ID, '_blank');
+        }).catch(function() {
+            prompt(currentLang === 'bg' ? 'Копирайте съобщението и го поставете в Messenger:' :
+                   currentLang === 'ru' ? 'Скопируйте сообщение и вставьте в Messenger:' :
+                   currentLang === 'fi' ? 'Kopioi viesti ja liitä Messengeriin:' :
+                   'Copy the message and paste it in Messenger:', message);
+            window.open('https://m.me/' + FB_PAGE_ID, '_blank');
+        });
+    } else {
+        const alerts = { bg: 'Моля, изберете дати за настаняване и напускане.', en: 'Please select check-in and check-out dates.', ru: 'Пожалуйста, выберите даты заселения и выезда.', fi: 'Valitse sisäänkirjautumis- ja uloskirjautumispäivät.' };
+        alert(alerts[currentLang]);
+    }
+}
+
+// ===== ADMIN =====
+function showAdminLogin() {
+    if (isAdmin) {
+        document.getElementById('adminPanel').classList.toggle('visible');
+        return;
+    }
+    const box = document.getElementById('adminLoginBox');
+    box.style.display = box.style.display === 'none' ? 'block' : 'none';
+    document.getElementById('adminPassInput').value = '';
+    document.getElementById('adminPassInput').focus();
+}
+
+function adminLogin() {
+    const pass = document.getElementById('adminPassInput').value;
+    if (pass === ADMIN_PASSWORD) {
+        isAdmin = true;
+        document.getElementById('adminLoginBox').style.display = 'none';
+        document.getElementById('adminPanel').classList.add('visible');
+        document.getElementById('adminToggleBtn').classList.add('visible');
+        renderCalendar();
+        renderAdminBookings();
+    } else {
+        alert('Грешна парола!');
+    }
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && document.getElementById('adminLoginBox').style.display === 'block') {
+        adminLogin();
+    }
+});
+
+function adminLogout() {
+    isAdmin = false;
+    document.getElementById('adminPanel').classList.remove('visible');
+    document.getElementById('adminToggleBtn').classList.remove('visible');
+    checkinDate = null;
+    checkoutDate = null;
+    document.getElementById('checkinDate').textContent = translations[currentLang].cal_pick;
+    document.getElementById('checkoutDate').textContent = translations[currentLang].cal_pick;
+    renderCalendar();
+}
+
+function adminSaveBooking() {
+    if (!checkinDate || !checkoutDate) {
+        alert('Изберете начална и крайна дата!');
+        return;
+    }
+    const fromStr = dateToStr(checkinDate);
+    const toStr = dateToStr(checkoutDate);
+
+    // Проверка за припокриване (само с резервации, не с off-season)
+    for (let r of bookedRanges) {
+        if (fromStr <= r.to && toStr >= r.from) {
+            alert('Датите се припокриват с вече съществуваща резервация!');
+            return;
+        }
+    }
+
+    bookedRanges.push({ from: fromStr, to: toStr });
+    bookedRanges.sort(function(a,b) { return a.from.localeCompare(b.from); });
+    saveBookings();
+
+    checkinDate = null;
+    checkoutDate = null;
+    document.getElementById('checkinDate').textContent = translations[currentLang].cal_pick;
+    document.getElementById('checkoutDate').textContent = translations[currentLang].cal_pick;
+
+    renderCalendar();
+    renderAdminBookings();
+}
+
+function adminDeleteBooking(idx) {
+    if (confirm('Сигурни ли сте, че искате да изтриете тази резервация?')) {
+        bookedRanges.splice(idx, 1);
+        saveBookings();
+        renderCalendar();
+        renderAdminBookings();
+    }
+}
+
+function renderAdminBookings() {
+    const list = document.getElementById('adminBookingsList');
+    if (!list) return;
+    if (bookedRanges.length === 0) {
+        list.innerHTML = '<p style="color:#999;font-size:0.9rem;">Няма записани резервации.</p>';
+        return;
+    }
+    let html = '';
+    bookedRanges.forEach(function(r, i) {
+        const from = r.from.split('-').reverse().join('.');
+        const to = r.to.split('-').reverse().join('.');
+        const fd = new Date(r.from);
+        const td = new Date(r.to);
+        const nights = countNights(fd, td);
+        html += '<div class="admin-booking-item">'
+            + '<span>' + from + ' → ' + to + ' (' + nights + ' нощ.)</span>'
+            + '<button class="admin-btn admin-btn-delete" onclick="adminDeleteBooking('+i+')">✕ Изтрий</button>'
+            + '</div>';
+    });
+    list.innerHTML = html;
+}
+
+initCalendar();
+setLanguage('fi');
+renderAptDescList('fi');
+</script>
+
+</body>
+</html>
