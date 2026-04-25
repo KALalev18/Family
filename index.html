@@ -724,41 +724,37 @@
         </div>
     </section>
 
-    <section id="services" class="services-bg">
-        <h2 class="section-title" data-i18n="services_title">Kaikki mukavuutesi</h2>
-        <p class="section-subtitle" data-i18n="services_subtitle">Olemme huolehtineet, ettei sinulta puutu mitään oleskelun aikana. Asunto on täysin varusteltu pitkille ja lyhyille lomille.</p>
-        
-        <div class="services-grid">
-            <div class="service-card">
-                <span class="service-icon">📶</span>
-                <h3 data-i18n="svc_wifi">Nopea Wi-Fi</h3>
-                <p data-i18n="svc_wifi_desc">Ilmainen ja luotettava internet työtä tai viihdetettä varten.</p>
-            </div>
-            <div class="service-card">
-                <span class="service-icon">🍳</span>
-                <h3 data-i18n="svc_kitchen">Keittiö</h3>
-                <p data-i18n="svc_kitchen_desc">Täysin varusteltu kodinkoneilla ja astioilla kotiruoan valmistukseen.</p>
-            </div>
-            <div class="service-card">
-                <span class="service-icon">📺</span>
-                <h3 data-i18n="svc_tv">Televisio</h3>
-                <p data-i18n="svc_tv_desc">Taulutelevisio monilla kaapelikanavilla illan rentoutumiseen.</p>
-            </div>
-            <div class="service-card">
-                <span class="service-icon">☕</span>
-                <h3 data-i18n="svc_terrace">Terassi</h3>
-                <p data-i18n="svc_terrace_desc">Viihtyisä parveke, täydellinen aamukahville merituulen kanssa.</p>
-            </div>
-            <div class="service-card paid-service">
-                
-                <span class="service-icon">🚗</span>
-                <h3 data-i18n="svc_parking">Yksityinen pysäköinti</h3>
-                <p data-i18n="svc_parking_desc">Tarjoamme varatun pysäköintipaikan rakennuksen lähellä. Ennakkovaraus vaaditaan.</p>
-                <br>
-                <span class="paid-tag" data-i18n="svc_paid_tag">Lisämaksu</span>
-            </div>
-        </div>
-    </section>
+        <!-- Apartment Description Section (Multilingual) -->
+        <section id="apartment-description">
+            <h2 class="section-title" data-i18n="apt_title">Апартамент 4+1 до плажа</h2>
+            <div class="section-subtitle" data-i18n="apt_location">Апартаментът се намира в стария град на Поморие, само на няколко метра от плажа. Поморие е красив морски град на българското Черноморие, известен със своите лечебни кални бани и прекрасни плажове.</div>
+            <div class="apt-desc-block" id="aptDescBlock"></div>
+        </section>
+        <script>
+        // Apartment description paragraphs for all languages (full, detailed, as provided by user)
+        const aptDescParagraphs = {
+            
+        };
+        function renderAptDescBlock(lang) {
+            const block = document.getElementById('aptDescBlock');
+            if (!block) return;
+            block.innerHTML = '';
+            (aptDescParagraphs[lang] || aptDescParagraphs['bg']).forEach(function(item) {
+                const p = document.createElement('p');
+                p.innerHTML = item;     
+                block.appendChild(p);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+    // Set all i18n elements to the default language on load
+    const t = translations[currentLang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.innerHTML = t[key];
+    });
+    renderAptDescBlock(currentLang || 'bg');
+});
+    </script>
 
     <section id="gallery">
         <h2 class="section-title" data-i18n="gallery_title">Kurkista sisään</h2>
@@ -878,6 +874,8 @@
 // ===== TRANSLATIONS =====
 const translations = {
     bg: {
+    apt_title: 'Апартамент 4+1 до плажа',
+    apt_location: 'Апартамент на една минута от плажа и на 5 минути от центъра на гр. Поморие. Поморие е красив морски град, разположен на българското Черноморие, известен със своите лечебни кални бани и прекрасни плажове. Подходящ за настаняване 4 човека. Допълнително настаняване на 5-ти човек – по договаряне. Апартаментът е в стария град на Поморие и e разположен само на няколко метра от плажа. Разполага с две стаи – едната с две самостоятелни легла, другата стая е със спалня. Разполага с разтегателен диван и оборудвана кухня с кухненска маса. Има тераса с маса и столове. Климатик, телевизия, микровълнова фурна, интернет. Кухня с фурна, котлон, аспиратор, хладилник, съдове за готвене, чинии, прибори за хранене, чаши. Съдомиялна, перална със сушилня, кана за вода. Ютия и маса за гладене. Спалня с тоалетка и огледало. Баня с душ кабина. Поставка за обувки и портманто. Апартаментът е с 4+1 места за настаняване. Заповядайте!',
         nav_about: 'За Поморие', nav_services: 'Удобства', nav_gallery: 'Галерия',
         nav_location: 'Локация', nav_book: 'Запази дати',
         hero_title: 'Добре дошли във Вашето <span>лятно убежище</span> в Поморие',
@@ -912,6 +910,8 @@ const translations = {
         monthNames: ['Януари','Февруари','Март','Април','Май','Юни','Юли','Август','Септември','Октомври','Ноември','Декември']
     },
     en: {
+        apt_title: 'Apartment 4+1 by the Beach',
+        apt_location: 'Apartment just one minute from the beach and five minutes from the center of Pomorie. Pomorie is a beautiful seaside town on the Bulgarian Black Sea coast, famous for its healing mud baths and wonderful beaches. Suitable for 4 guests. Additional accommodation for a 5th person – upon request. The apartment is in the old town of Pomorie, just a few meters from the beach. There are two rooms – one with two single beds, the other with a double bed. There is a sofa bed and a fully equipped kitchen with a dining table. There is a terrace with a table and chairs. Air conditioning, TV, microwave oven, internet. Kitchen with oven, stove, extractor, fridge, cookware, plates, cutlery, glasses. Dishwasher, washing machine with dryer, electric kettle. Iron and ironing board. Bedroom with dressing table and mirror. Bathroom with shower cabin. Shoe rack and coat rack. The apartment accommodates 4+1 guests. Welcome!',
         nav_about: 'About Pomorie', nav_services: 'Amenities', nav_gallery: 'Gallery',
         nav_location: 'Location', nav_book: 'Book dates',
         hero_title: 'Welcome to Your <span>Summer Retreat</span> in Pomorie',
@@ -946,6 +946,8 @@ const translations = {
         monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December']
     },
     ru: {
+        apt_title: 'Апартамент 4+1 у пляжа',
+        apt_location: 'Апартамент в одной минуте от пляжа и в пяти минутах от центра города Поморие. Поморие — красивый курортный город на болгарском Черноморском побережье, известный своими целебными грязями и прекрасными пляжами. Подходит для размещения 4 человек. Дополнительное размещение 5-го гостя – по договорённости. Апартамент находится в старом городе Поморие, всего в нескольких метрах от пляжа. В апартаменте две комнаты: одна с двумя односпальными кроватями, другая с двуспальной кроватью. Есть раскладной диван и полностью оборудованная кухня с обеденным столом. Есть терраса с столом и стульями. Кондиционер, телевизор, микроволновая печь, интернет. Кухня с духовкой, плитой, вытяжкой, холодильником, посудой, тарелками, столовыми приборами, стаканами. Посудомоечная машина, стиральная машина с сушкой, электрочайник. Утюг и гладильная доска. Спальня с туалетным столиком и зеркалом. Ванная комната с душевой кабиной. Обувница и вешалка. Апартамент рассчитан на 4+1 гостей. Добро пожаловать!',
         nav_about: 'О Поморие', nav_services: 'Удобства', nav_gallery: 'Галерея',
         nav_location: 'Расположение', nav_book: 'Забронировать',
         hero_title: 'Добро пожаловать в Ваш <span>летний уголок</span> в Поморие',
@@ -979,7 +981,9 @@ const translations = {
         dayNames: ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'],
         monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь']
     },
-    fi: {
+        fi: {
+            apt_title: 'Huoneisto 4+1 rannalla',
+        apt_location: 'Huoneisto vain minuutin päässä rannasta ja viiden minuutin päässä Pomorien keskustasta. Pomorie on kaunis bulgarialainen merenrantakaupunki Mustanmeren rannalla, joka tunnetaan parantavista mutakylvyistään ja upeista rannoistaan. Sopii 4 hengelle. Lisämajoitus 5. henkilölle – sopimuksen mukaan. Huoneisto on Pomorien vanhassakaupungissa, vain muutaman askeleen päässä rannasta. Kaksi huonetta – toisessa kaksi erillistä vuodetta, toisessa parisänky. Vuodesohva ja täysin varusteltu keittiö ruokapöydällä. Parveke, jossa pöytä ja tuolit. Ilmastointi, televisio, mikroaaltouuni, internet. Keittiö: uuni, liesi, liesituuletin, jääkaappi, ruoanlaittovälineet, lautaset, ruokailuvälineet, lasit. Astianpesukone, pesukone ja kuivausrumpu, vedenkeitin. Silitysrauta ja -lauta. Makuuhuoneessa kampauspöytä ja peili. Kylpyhuone suihkukaapilla. Kenkäteline ja naulakko. Huoneistossa on 4+1 vuodepaikkaa. Tervetuloa!',
         nav_about: 'Pomoriesta', nav_services: 'Mukavuudet', nav_gallery: 'Galleria',
         nav_location: 'Sijainti', nav_book: 'Varaa päivät',
         hero_title: 'Tervetuloa <span>kesäpakopaikkaan</span> Pomoriessa',
@@ -1044,6 +1048,9 @@ function setLanguage(lang) {
         const key = el.getAttribute('data-i18n');
         if (t[key]) el.innerHTML = t[key];
     });
+
+    // Render apartment description list
+    renderAptDescBlock(lang);
 
     // Reset calendar date display if not selected
     if (!checkinDate) document.getElementById('checkinDate').textContent = t.cal_pick;
@@ -1401,6 +1408,7 @@ function renderAdminBookings() {
 
 initCalendar();
 setLanguage('fi');
+renderAptDescList('fi');
 </script>
 
 </body>
