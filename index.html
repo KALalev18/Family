@@ -860,144 +860,12 @@
             <a href="#services" data-i18n="footer_link_services">Mukavuudet ja pysäköinti</a>
             <a href="#gallery" data-i18n="footer_link_photos">Kuvat</a>
             <a href="#location" data-i18n="footer_link_map">Kartta ja sijainti</a>
-              <a href="#" id="termsLink" data-i18n="footer_terms">Käyttöehdot</a>
-              <a href="#" id="privacyLink" data-i18n="footer_privacy">Tietosuojakäytäntö</a>
         </div>
 
         <div class="footer-bottom">
             <p data-i18n="footer_copy">&copy; 2026 Huoneisto Tuthon Pomorie. Kaikki oikeudet pidätetään.</p>
-            <p style="margin-top:10px;">
-                <a href="#" id="termsLink2" data-i18n="footer_terms" style="color:#888;text-decoration:none;transition:color 0.3s;">Общи условия</a>
-                &nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="#" id="privacyLink2" data-i18n="footer_privacy" style="color:#888;text-decoration:none;transition:color 0.3s;">Политика за поверителност</a>
-            </p>
         </div>
-
-            <!-- Terms and Privacy Popup (moved inside footer) -->
-            <div id="termsModal" style="display:none;position:fixed;z-index:2000;left:0;top:0;width:100vw;height:100vh;background:rgba(44,62,80,0.55);backdrop-filter:blur(2px);justify-content:center;align-items:center;">
-                <div style="background:#fff;max-width:600px;width:90vw;padding:32px 24px 24px 24px;border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,0.18);position:relative;">
-                    <button id="closeTerms" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:2rem;color:#0CA789;cursor:pointer;">&times;</button>
-                    <h2 id="termsTitle" style="font-family:'Playfair Display',serif;color:#0CA789;text-align:center;margin-bottom:18px;">Terms and Services</h2>
-                    <div id="termsContent" style="color:#2C3E50;line-height:1.7;font-size:1.05rem;max-height:55vh;overflow-y:auto;text-align:left;"></div>
-                </div>
-            </div>
     </footer>
-
-</footer>
-
-<script>
-// ===== TERMS AND PRIVACY CONTENT =====
-const popupData = {
-    fi: {
-        terms: {
-            title: 'Käyttöehdot ja palvelut',
-            content: `Tämä verkkosivusto tarjoaa tietoa ja varausmahdollisuuden Huoneisto Tuthon Pomorie -majoitukseen. Kaikki tiedot pyritään pitämään ajan tasalla ja oikeina. Varaus on sitova vasta vahvistuksen jälkeen. Sivuston käyttö tapahtuu omalla vastuulla. Emme vastaa mahdollisista virheistä tai katkoksista palvelussa.`
-        },
-        privacy: {
-            title: 'Tietosuojakäytäntö',
-            content: `Emme kerää henkilötietoja ilman suostumustasi. Kaikki annetut tiedot käsitellään luottamuksellisesti ja vain varauksen toteuttamiseksi. Sivustolla voidaan käyttää evästeitä käyttökokemuksen parantamiseksi.`
-        }
-    },
-    en: {
-        terms: {
-            title: 'Terms and Services',
-            content: `This website provides information and booking options for Huoneisto Tuthon Pomorie accommodation. All information is intended to be accurate and up-to-date. A reservation is binding only after confirmation. Use of the site is at your own risk. We are not responsible for possible errors or service interruptions.`
-        },
-        privacy: {
-            title: 'Privacy Policy',
-            content: `We do not collect personal data without your consent. All information provided is treated confidentially and only for the purpose of fulfilling your booking. Cookies may be used to improve your experience on the site.`
-        }
-    },
-    bg: {
-        terms: {
-            title: 'Общи условия',
-            content: `Този уебсайт предоставя информация и възможност за резервация на апартамент Huoneisto Tuthon Pomorie. Всички данни се поддържат актуални и точни. Резервацията е валидна само след потвърждение. Използването на сайта е на собствен риск. Не носим отговорност за евентуални грешки или прекъсвания на услугата.`
-        },
-        privacy: {
-            title: 'Политика за поверителност',
-            content: `Не събираме лични данни без Вашето съгласие. Всички предоставени данни се обработват поверително и само с цел изпълнение на резервацията. На сайта може да се използват бисквитки за подобряване на потребителското изживяване.`
-        }
-    },
-    ru: {
-        terms: {
-            title: 'Условия и услуги',
-            content: `Этот сайт предоставляет информацию и возможность бронирования апартаментов Huoneisto Tuthon Pomorie. Вся информация поддерживается в актуальном и точном состоянии. Бронирование действительно только после подтверждения. Использование сайта осуществляется на ваш страх и риск. Мы не несем ответственности за возможные ошибки или перебои в работе сервиса.`
-        },
-        privacy: {
-            title: 'Политика конфиденциальности',
-            content: `Мы не собираем персональные данные без вашего согласия. Вся предоставленная информация обрабатывается конфиденциально и только для выполнения бронирования. На сайте могут использоваться cookies для улучшения пользовательского опыта.`
-        }
-    }
-};
-
-// Add translation keys for the links
-if (typeof translations !== 'undefined') {
-    if (!translations.fi) translations.fi = {};
-    if (!translations.en) translations.en = {};
-    if (!translations.bg) translations.bg = {};
-    if (!translations.ru) translations.ru = {};
-    translations.fi.footer_terms = 'Käyttöehdot';
-    translations.en.footer_terms = 'Terms & Services';
-    translations.bg.footer_terms = 'Общи условия';
-    translations.ru.footer_terms = 'Условия и услуги';
-    translations.fi.footer_privacy = 'Tietosuojakäytäntö';
-    translations.en.footer_privacy = 'Privacy Policy';
-    translations.bg.footer_privacy = 'Политика за поверителност';
-    translations.ru.footer_privacy = 'Политика конфиденциальности';
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    const termsLink = document.getElementById('termsLink');
-    const privacyLink = document.getElementById('privacyLink');
-    const termsModal = document.getElementById('termsModal');
-    const closeTerms = document.getElementById('closeTerms');
-    const termsTitle = document.getElementById('termsTitle');
-    const termsContent = document.getElementById('termsContent');
-
-    function getLang() {
-        const htmlLang = document.documentElement.lang;
-        if (popupData[htmlLang]) return htmlLang;
-        return 'fi';
-    }
-
-    function showPopup(type) {
-        const lang = getLang();
-        termsTitle.textContent = popupData[lang][type].title;
-        termsContent.textContent = popupData[lang][type].content;
-        termsModal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-
-    function hidePopup() {
-        termsModal.style.display = 'none';
-        document.body.style.overflow = '';
-    }
-
-    if (termsLink) termsLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        showPopup('terms');
-    });
-    if (privacyLink) privacyLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        showPopup('privacy');
-    });
-    var termsLink2 = document.getElementById('termsLink2');
-    var privacyLink2 = document.getElementById('privacyLink2');
-    if (termsLink2) termsLink2.addEventListener('click', function(e) {
-        e.preventDefault();
-        showPopup('terms');
-    });
-    if (privacyLink2) privacyLink2.addEventListener('click', function(e) {
-        e.preventDefault();
-        showPopup('privacy');
-    });
-    if (closeTerms) closeTerms.addEventListener('click', hidePopup);
-    if (termsModal) termsModal.addEventListener('click', function(e) {
-        if (e.target === termsModal) hidePopup();
-    });
-});
-</script>
-</script>
 
     <!-- Админ бутон (видим само за знаещите) -->
     <button class="admin-toggle" id="adminToggleBtn" onclick="showAdminLogin()" title="Admin">⚙</button>
@@ -1038,8 +906,6 @@ const translations = {
         footer_contacts: 'Контакти', footer_links: 'Бързи връзки',
         footer_link_city: 'За града', footer_link_services: 'Удобства и Паркинг', footer_link_photos: 'Снимки', footer_link_map: 'Карта и Локация',
         footer_copy: '&copy; 2026 Huoneisto Tuthon Pomorie. Всички права запазени.',
-        footer_terms: 'Общи условия',
-        footer_privacy: 'Политика за поверителност',
         dayNames: ['Пн','Вт','Ср','Чт','Пт','Сб','Нд'],
         monthNames: ['Януари','Февруари','Март','Април','Май','Юни','Юли','Август','Септември','Октомври','Ноември','Декември']
     },
@@ -1076,8 +942,6 @@ const translations = {
         footer_contacts: 'Contacts', footer_links: 'Quick Links',
         footer_link_city: 'About the city', footer_link_services: 'Amenities & Parking', footer_link_photos: 'Photos', footer_link_map: 'Map & Location',
         footer_copy: '&copy; 2026 Huoneisto Tuthon Pomorie. All rights reserved.',
-        footer_terms: 'Terms & Services',
-        footer_privacy: 'Privacy Policy',
         dayNames: ['Mo','Tu','We','Th','Fr','Sa','Su'],
         monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December']
     },
@@ -1114,8 +978,6 @@ const translations = {
         footer_contacts: 'Контакты', footer_links: 'Быстрые ссылки',
         footer_link_city: 'О городе', footer_link_services: 'Удобства и парковка', footer_link_photos: 'Фотографии', footer_link_map: 'Карта и расположение',
         footer_copy: '&copy; 2026 Huoneisto Tuthon Pomorie. Все права защищены.',
-        footer_terms: 'Условия и услуги',
-        footer_privacy: 'Политика конфиденциальности',
         dayNames: ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'],
         monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь']
     },
@@ -1152,8 +1014,6 @@ const translations = {
         footer_contacts: 'Yhteystiedot', footer_links: 'Pikalinkit',
         footer_link_city: 'Kaupungista', footer_link_services: 'Mukavuudet ja pysäköinti', footer_link_photos: 'Kuvat', footer_link_map: 'Kartta ja sijainti',
         footer_copy: '&copy; 2026 Huoneisto Tuthon Pomorie. Kaikki oikeudet pidätetään.',
-        footer_terms: 'Käyttöehdot',
-        footer_privacy: 'Tietosuojakäytäntö',
         dayNames: ['Ma','Ti','Ke','To','Pe','La','Su'],
         monthNames: ['Tammikuu','Helmikuu','Maaliskuu','Huhtikuu','Toukokuu','Kesäkuu','Heinäkuu','Elokuu','Syyskuu','Lokakuu','Marraskuu','Joulukuu']
     }
