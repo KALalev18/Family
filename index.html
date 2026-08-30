@@ -315,6 +315,50 @@
 
         .gallery-item:hover .gallery-caption { transform: translateY(0); }
 
+        .amenities-section {
+            background: linear-gradient(180deg, #f8fbff 0%, var(--sand) 100%);
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .amenity-card {
+            background: var(--white);
+            border-radius: 18px;
+            padding: 25px 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid rgba(12, 167, 137, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .amenity-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .amenity-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .amenity-card h3 {
+            margin: 0 0 10px 0;
+            color: var(--dark-text);
+            font-size: 1.15rem;
+        }
+
+        .amenity-card p {
+            margin: 0;
+            color: var(--gray-text);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
         /* 4. Локация (Карта) */
         .map-section { background-color: var(--white); padding-bottom: 0;}
         .map-container {
@@ -697,7 +741,7 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1 data-i18n="hero_title">Tervetuloa <span>kesäpakopaikkaan</span> Pomoriessa</h1>
+            <h1 data-i18n="hero_title">Tervetuloa <span>kesäpaikkaan</span> Pomoriessa</h1>
             <p data-i18n="hero_text">Valoisa ja viihtyisä asuntomme sijaitsee vain muutaman askeleen päässä rannasta. Täydellinen paikka perhelomalle, joka on täynnä aurinkoa, merituulta ja täydellistä rentoutumista.</p>
             <a href="#booking" class="btn-main">
                 <span data-i18n="hero_btn">Varaa nyt</span>
@@ -762,15 +806,15 @@
 
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="img/1776461107280.jpg" alt="Всекидневна">
+                <img src="img/livingroom.jpg" alt="Всекидневна">
                 <div class="gallery-caption" data-i18n="gal_living">Olohuone kulmasohvalla</div>
             </div>
             <div class="gallery-item">
-                <img src="img/1776461107183.jpg" alt="Makuuhuone">
+                <img src="img/bigbed.jpg" alt="Makuuhuone">
                 <div class="gallery-caption" data-i18n="gal_bedroom">Makuuhuone parisängyllä</div>
             </div>
             <div class="gallery-item">
-                <img src="img/1776461107151.jpg" alt="Keittiö">
+                <img src="img/kitchen.jpg" alt="Keittiö">
                 <div class="gallery-caption" data-i18n="gal_kitchen">Täysin varusteltu keittiö</div>
             </div>
             <div class="gallery-item">
@@ -778,12 +822,35 @@
                 <div class="gallery-caption" data-i18n="gal_bathroom">Kylpyhuone pesukoneella</div>
             </div>
             <div class="gallery-item">
-                <img src="img/1776461107248.jpg" alt="Ruokailutila">
-                <div class="gallery-caption" data-i18n="gal_dining">Ruokailutila terassin käynti</div>
+                <img src="img/wardrobeotherside.jpg" alt="Ruokailutila">
+                <div class="gallery-caption" data-i18n="gal_dining">Ruokailutila terassin yhteydessä</div>
             </div>
             <div class="gallery-item">
-                <img src="img/1776461107112.jpg" alt="Makuuhuone 2">
+                <img src="img/2beds.jpg" alt="Makuuhuone 2">
                 <div class="gallery-caption" data-i18n="gal_bedroom2">Makuuhuone kahdella sängyllä</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="amenities" class="amenities-section">
+        <h2 class="section-title" data-i18n="amenities_title">Amenities</h2>
+        <p class="section-subtitle" data-i18n="amenities_subtitle">Everything we offer for a comfortable and stress-free stay.</p>
+
+        <div class="amenities-grid">
+            <div class="amenity-card">
+                <span class="amenity-icon" data-i18n="amenity_airport_icon">🚐</span>
+                <h3 data-i18n="amenity_airport_title">Airport pickup</h3>
+                <p data-i18n="amenity_airport_text">Convenient transport from the airport straight to your accommodation.</p>
+            </div>
+            <div class="amenity-card">
+                <span class="amenity-icon" data-i18n="amenity_beach_icon">🏖️</span>
+                <h3 data-i18n="amenity_beach_title">50 m to the coast</h3>
+                <p data-i18n="amenity_beach_text">The apartment is only 50 meters from the beach, so you can reach the sea in a moment.</p>
+            </div>
+            <div class="amenity-card">
+                <span class="amenity-icon" data-i18n="amenity_parking_icon">🚗</span>
+                <h3 data-i18n="amenity_parking_title">Parking</h3>
+                <p data-i18n="amenity_parking_text">Private or nearby parking available for a comfortable arrival and departure.</p>
             </div>
         </div>
     </section>
@@ -793,7 +860,7 @@
         <p class="section-subtitle" data-i18n="booking_subtitle">Valitse sisäänkirjautumis- ja uloskirjautumispäivät kalenterista.</p>
         <div class="calendar-wrapper">
             <div class="calendar-price-info">
-                <div class="price-per-night" id="pricePerNightDisplay">60-65 € <span style="font-size:0.5em;font-weight:400;color:var(--gray-text)" data-i18n="cal_price_label">/ per yö</span></div>
+                <div class="price-per-night" id="pricePerNightDisplay">100-120 € <span style="font-size:0.5em;font-weight:400;color:var(--gray-text)" data-i18n="cal_price_label">/ per yö</span></div>
             </div>
             <div class="calendar-header">
                 <h3 id="calendarMonthYear"></h3>
@@ -1007,7 +1074,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const translations = {
     bg: {
     apt_title: 'Апартамент 4+1 до плажа',
-    apt_location: 'Апартамент на една минута от плажа и на 5 минути от центъра на гр. Поморие. Поморие е красив морски град, разположен на българското Черноморие, известен със своите лечебни кални бани и прекрасни плажове. Подходящ за настаняване 4 човека. Допълнително настаняване на 5-ти човек – по договаряне. Апартаментът е в стария град на Поморие и e разположен само на няколко метра от плажа. Разполага с две стаи – едната с две самостоятелни легла, другата стая е със спалня. Разполага с разтегателен диван и оборудвана кухня с кухненска маса. Има тераса с маса и столове. Климатик, телевизия, микровълнова фурна, интернет. Кухня с фурна, котлон, аспиратор, хладилник, съдове за готвене, чинии, прибори за хранене, чаши. Съдомиялна, перална със сушилня, кана за вода. Ютия и маса за гладене. Спалня с тоалетка и огледало. Баня с душ кабина. Поставка за обувки и портманто. Апартаментът е с 4+1 места за настаняване. Заповядайте!',
+    apt_location: 'Апартамент на една минута от плажа и на 5 минути от центъра на гр. Поморие. Поморие е красив морски град, разположен на българското Черноморие, известен със своите лечебни кални бани и прекрасни плажове. Апартаментът е в стария град на Поморие и e разположен само на няколко метра от плажа. Препоръчителната бройка за настаняване е 4 човека, но допълнително настаняване на 5-ти човек може и по договаряне. Разполага с две стаи - едната с две самостоятелни легла, другата стая е със спалня. Разполага с разтегателен диван и оборудвана кухня с кухненска маса. Има тераса с маса и столове. Климатик, телевизия, микровълнова фурна, интернет. Кухня с фурна, котлон, аспиратор, хладилник, съдове за готвене, чинии, прибори за хранене, чаши. Съдомиялна, перална със сушилня, кана за вода. Ютия и маса за гладене. Спалня с тоалетка и огледало. Баня с душ кабина. Поставка за обувки и портманто. Заповядайте!',
         nav_about: 'За Поморие', nav_services: 'Удобства', nav_gallery: 'Галерия',
         nav_location: 'Локация', nav_book: 'Запази дати',
         hero_title: 'Добре дошли във Вашето <span>лятно убежище</span> в Поморие',
@@ -1029,7 +1096,7 @@ const translations = {
         svc_paid_tag: 'Заплаща се допълнително',
         svc_parking: 'Частен Паркинг', svc_parking_desc: 'Предлагаме запазено паркомясто в близост до сградата. Изисква се предварителна заявка.',
         gallery_title: 'Надникнете вътре', gallery_subtitle: 'Светъл, модерен и създаден с любов към детайла.',
-        gal_living: 'Всекидневна с ъглов диван', gal_bedroom: 'Спалня с двойно легло', gal_kitchen: 'Напълно оборудвана кухня', gal_bathroom: 'Баня с пералня', gal_dining: 'Трапезария с изход към терасата', gal_bedroom2: 'Спалня с две легла', gal_kitchen2: 'Кухненски кът с трапезна маса',
+        gal_living: 'Всекидневна с ъглов диван', gal_bedroom: 'Спалня с двойно легло', gal_kitchen: 'Напълно оборудвана кухня', gal_bathroom: 'Баня с пералня', gal_dining: 'Голям гардероб в стаята', gal_bedroom2: 'Спалня с две легла', gal_kitchen2: 'Кухненски кът с трапезна маса',
         booking_title: 'Резервирайте вашия престой', booking_subtitle: 'Изберете дати за настаняване и напускане от календара.',
         cal_checkin: 'Настаняване', cal_checkout: 'Напускане', cal_pick: '— Изберете —', cal_book_btn: 'Запази дати',
         cal_price_label: '/ на вечер', cal_nights: 'нощувки', cal_total: 'Общо',
@@ -1040,12 +1107,23 @@ const translations = {
         footer_copy: '&copy; 2026 Huoneisto Tuthon Pomorie. Всички права запазени.',
         footer_terms: 'Общи условия',
         footer_privacy: 'Политика за поверителност',
+        amenities_title: 'Удобства',
+        amenities_subtitle: 'Всичко необходимо за комфортно и спокойно престояване.',
+        amenity_airport_icon: '🚐',
+        amenity_airport_title: 'Трансфер от летището',
+        amenity_airport_text: 'Удобно придвижване от летището директно до апартамента, без стрес и бавене.',
+        amenity_beach_icon: '🏖️',
+        amenity_beach_title: '50 м до брега',
+        amenity_beach_text: 'Апартаментът е само на 50 метра от плажа, така че можете да стигнете до морето за секунди.',
+        amenity_parking_icon: '🚗',
+        amenity_parking_title: 'Паркинг',
+        amenity_parking_text: 'Наличен е удобен и сигурен паркинг в близост до сградата.',
         dayNames: ['Пн','Вт','Ср','Чт','Пт','Сб','Нд'],
         monthNames: ['Януари','Февруари','Март','Април','Май','Юни','Юли','Август','Септември','Октомври','Ноември','Декември']
     },
     en: {
         apt_title: 'Apartment 4+1 by the Beach',
-        apt_location: 'Apartment just one minute from the beach and five minutes from the center of Pomorie. Pomorie is a beautiful seaside town on the Bulgarian Black Sea coast, famous for its healing mud baths and wonderful beaches. Suitable for 4 guests. Additional accommodation for a 5th person – upon request. The apartment is in the old town of Pomorie, just a few meters from the beach. There are two rooms – one with two single beds, the other with a double bed. There is a sofa bed and a fully equipped kitchen with a dining table. There is a terrace with a table and chairs. Air conditioning, TV, microwave oven, internet. Kitchen with oven, stove, extractor, fridge, cookware, plates, cutlery, glasses. Dishwasher, washing machine with dryer, electric kettle. Iron and ironing board. Bedroom with dressing table and mirror. Bathroom with shower cabin. Shoe rack and coat rack. The apartment accommodates 4+1 guests. Welcome!',
+        apt_location: 'Apartment one minute from the beach and 5 minutes from the center of Pomorie. Pomorie is a beautiful seaside town located on the Bulgarian Black Sea Coast, famous for its healing mud baths and wonderful beaches. The apartment is in the old town of Pomorie and is located just a few meters from the beach. The recommended number of people for accommodation is 4, but additional accommodation for a 5th person is possible by agreement. It has two rooms - one with two single beds, the other room with a bedroom. It has a sofa bed and an equipped kitchen with a kitchen table. There is a terrace with a table and chairs. Air conditioning, TV, microwave, internet. Kitchen with oven, hob, extractor fan, refrigerator, cooking utensils, plates, cutlery, glasses. Dishwasher, washing machine with dryer, water kettle. Iron and ironing board. Bedroom with dressing table and mirror. Bathroom with shower cabin. Shoe rack and coat rack. Welcome!',
         nav_about: 'About Pomorie', nav_services: 'Amenities', nav_gallery: 'Gallery',
         nav_location: 'Location', nav_book: 'Book dates',
         hero_title: 'Welcome to Your <span>Summer Retreat</span> in Pomorie',
@@ -1067,7 +1145,7 @@ const translations = {
         svc_paid_tag: 'Additional charge',
         svc_parking: 'Private Parking', svc_parking_desc: 'We offer a reserved parking spot near the building. Prior reservation required.',
         gallery_title: 'Take a Peek Inside', gallery_subtitle: 'Bright, modern and created with attention to detail.',
-        gal_living: 'Living room with corner sofa', gal_bedroom: 'Bedroom with double bed', gal_kitchen: 'Fully equipped kitchen', gal_bathroom: 'Bathroom with washing machine', gal_dining: 'Dining area with terrace access', gal_bedroom2: 'Bedroom with twin beds', gal_kitchen2: 'Kitchen corner with dining table',
+        gal_living: 'Living room with corner sofa', gal_bedroom: 'Bedroom with double bed', gal_kitchen: 'Fully equipped kitchen', gal_bathroom: 'Bathroom with washing machine', gal_dining: 'Large wardrobe in the room', gal_bedroom2: 'Bedroom with twin beds', gal_kitchen2: 'Kitchen corner with dining table',
         booking_title: 'Book Your Stay', booking_subtitle: 'Select check-in and check-out dates from the calendar.',
         cal_checkin: 'Check-in', cal_checkout: 'Check-out', cal_pick: '— Select —', cal_book_btn: 'Book dates',
         cal_price_label: '/ per night', cal_nights: 'nights', cal_total: 'Total',
@@ -1078,12 +1156,23 @@ const translations = {
         footer_copy: '&copy; 2026 Huoneisto Tuthon Pomorie. All rights reserved.',
         footer_terms: 'Terms & Services',
         footer_privacy: 'Privacy Policy',
+        amenities_title: 'Amenities',
+        amenities_subtitle: 'Everything we offer for a comfortable and stress-free stay.',
+        amenity_airport_icon: '🚐',
+        amenity_airport_title: 'Airport pickup',
+        amenity_airport_text: 'Convenient transport from the airport directly to your accommodation with no stress or delay.',
+        amenity_beach_icon: '🏖️',
+        amenity_beach_title: '50 m to the coast',
+        amenity_beach_text: 'The apartment is only 50 meters from the beach, so you can reach the sea in moments.',
+        amenity_parking_icon: '🚗',
+        amenity_parking_title: 'Parking',
+        amenity_parking_text: 'Private or nearby parking is available for an easy arrival and departure.',
         dayNames: ['Mo','Tu','We','Th','Fr','Sa','Su'],
         monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December']
     },
     ru: {
         apt_title: 'Апартамент 4+1 у пляжа',
-        apt_location: 'Апартамент в одной минуте от пляжа и в пяти минутах от центра города Поморие. Поморие — красивый курортный город на болгарском Черноморском побережье, известный своими целебными грязями и прекрасными пляжами. Подходит для размещения 4 человек. Дополнительное размещение 5-го гостя – по договорённости. Апартамент находится в старом городе Поморие, всего в нескольких метрах от пляжа. В апартаменте две комнаты: одна с двумя односпальными кроватями, другая с двуспальной кроватью. Есть раскладной диван и полностью оборудованная кухня с обеденным столом. Есть терраса с столом и стульями. Кондиционер, телевизор, микроволновая печь, интернет. Кухня с духовкой, плитой, вытяжкой, холодильником, посудой, тарелками, столовыми приборами, стаканами. Посудомоечная машина, стиральная машина с сушкой, электрочайник. Утюг и гладильная доска. Спальня с туалетным столиком и зеркалом. Ванная комната с душевой кабиной. Обувница и вешалка. Апартамент рассчитан на 4+1 гостей. Добро пожаловать!',
+        apt_location: 'Апартаменты расположены в минуте от пляжа и в 5 минутах от центра Поморие. Поморие — красивый приморский город на болгарском побережье Черного моря, известный своими целебными грязевыми ваннами и чудесными пляжами. Апартаменты находятся в старом городе Поморие, всего в нескольких метрах от пляжа. Рекомендуемое количество гостей — 4 человека, но по договоренности возможно размещение 5-го человека. В апартаментах две комнаты — одна с двумя односпальными кроватями, другая — спальня. Есть диван-кровать и оборудованная кухня со столом. Есть терраса со столом и стульями. Кондиционер, телевизор, микроволновая печь, интернет. Кухня с духовкой, плитой, вытяжкой, холодильником, кухонной утварью, тарелками, столовыми приборами, стаканами. Посудомоечная машина, стиральная машина с сушилкой, чайник. Утюг и гладильная доска. Спальня с туалетным столиком и зеркалом. Ванная комната с душевой кабиной. Полка для обуви и вешалка для одежды. Добро пожаловать!',
         nav_about: 'О Поморие', nav_services: 'Удобства', nav_gallery: 'Галерея',
         nav_location: 'Расположение', nav_book: 'Забронировать',
         hero_title: 'Добро пожаловать в Ваш <span>летний уголок</span> в Поморие',
@@ -1105,7 +1194,7 @@ const translations = {
         svc_paid_tag: 'Оплачивается дополнительно',
         svc_parking: 'Частная парковка', svc_parking_desc: 'Предлагаем зарезервированное парковочное место рядом со зданием. Требуется предварительная заявка.',
         gallery_title: 'Загляните внутрь', gallery_subtitle: 'Светлый, современный и созданный с любовью к деталям.',
-        gal_living: 'Гостиная с угловым диваном', gal_bedroom: 'Спальня с двуспальной кроватью', gal_kitchen: 'Полностью оборудованная кухня', gal_bathroom: 'Ванная со стиральной машиной', gal_dining: 'Столовая с выходом на террасу', gal_bedroom2: 'Спальня с двумя кроватями', gal_kitchen2: 'Кухонный уголок со столом',
+        gal_living: 'Гостиная с угловым диваном', gal_bedroom: 'Спальня с двуспальной кроватью', gal_kitchen: 'Полностью оборудованная кухня', gal_bathroom: 'Ванная со стиральной машиной', gal_dining: 'Большой шкаф в комнате', gal_bedroom2: 'Спальня с двумя кроватями', gal_kitchen2: 'Кухонный уголок со столом',
         booking_title: 'Забронируйте ваш отдых', booking_subtitle: 'Выберите даты заселения и выезда из календаря.',
         cal_checkin: 'Заселение', cal_checkout: 'Выезд', cal_pick: '— Выберите —', cal_book_btn: 'Забронировать даты',
         cal_price_label: '/ за ночь', cal_nights: 'ночей', cal_total: 'Итого',
@@ -1116,15 +1205,26 @@ const translations = {
         footer_copy: '&copy; 2026 Huoneisto Tuthon Pomorie. Все права защищены.',
         footer_terms: 'Условия и услуги',
         footer_privacy: 'Политика конфиденциальности',
+        amenities_title: 'Удобства',
+        amenities_subtitle: 'Всё, что нужно для комфортного и спокойного пребывания.',
+        amenity_airport_icon: '🚐',
+        amenity_airport_title: 'Трансфер из аэропорта',
+        amenity_airport_text: 'Удобная доставка из аэропорта прямо в апартамент без стресса и задержек.',
+        amenity_beach_icon: '🏖️',
+        amenity_beach_title: '50 м до моря',
+        amenity_beach_text: 'Апартамент находится всего в 50 метрах от пляжа, поэтому до моря можно дойти за минуту.',
+        amenity_parking_icon: '🚗',
+        amenity_parking_title: 'Парковка',
+        amenity_parking_text: 'Рядом с домом доступна удобная и безопасная парковка для вашего автомобиля.',
         dayNames: ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'],
         monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь']
     },
         fi: {
             apt_title: 'Huoneisto 4+1 rannalla',
-        apt_location: 'Huoneisto vain minuutin päässä rannasta ja viiden minuutin päässä Pomorien keskustasta. Pomorie on kaunis bulgarialainen merenrantakaupunki Mustanmeren rannalla, joka tunnetaan parantavista mutakylvyistään ja upeista rannoistaan. Sopii 4 hengelle. Lisämajoitus 5. henkilölle – sopimuksen mukaan. Huoneisto on Pomorien vanhassakaupungissa, vain muutaman askeleen päässä rannasta. Kaksi huonetta – toisessa kaksi erillistä vuodetta, toisessa parisänky. Vuodesohva ja täysin varusteltu keittiö ruokapöydällä. Parveke, jossa pöytä ja tuolit. Ilmastointi, televisio, mikroaaltouuni, internet. Keittiö: uuni, liesi, liesituuletin, jääkaappi, ruoanlaittovälineet, lautaset, ruokailuvälineet, lasit. Astianpesukone, pesukone ja kuivausrumpu, vedenkeitin. Silitysrauta ja -lauta. Makuuhuoneessa kampauspöytä ja peili. Kylpyhuone suihkukaapilla. Kenkäteline ja naulakko. Huoneistossa on 4+1 vuodepaikkaa. Tervetuloa!',
+        apt_location: 'Huoneisto minuutin päässä rannalta ja 5 minuutin päässä Pomorien keskustasta. Pomorie on kaunis merenrantakaupunki Bulgarian Mustanmeren rannikolla, joka on kuuluisa parantavista mutakylpyistään ja upeista rannoistaan. Huoneisto sijaitsee Pomorien vanhassakaupungissa vain muutaman metrin päässä rannasta. Suositeltu henkilömäärä majoitustilaa varten on 4 henkilöä, mutta lisämajoitus viidennelle henkilölle on mahdollista sopimuksen mukaan. Siinä on kaksi huonetta - toisessa kaksi erillistä sänkyä, toisessa huoneessa makuuhuone. Siinä on vuodesohva ja varusteltu keittiö, jossa on keittiön pöytä. Terassilla on pöytä ja tuolit. Ilmastointi, TV, mikroaaltouuni, internet. Keittiössä uuni, liesi, liesituuletin, jääkaappi, keittiövälineet, lautaset, aterimet, lasit. Astianpesukone, pesukone kuivausrummulla, vedenkeitin. Silitysrauta ja -lauta. Makuuhuoneessa peilipöytä ja peili. Kylpyhuoneessa suihkukaappi. Kenkäteline ja naulakko. Tervetuloa!',
         nav_about: 'Pomoriesta', nav_services: 'Mukavuudet', nav_gallery: 'Galleria',
         nav_location: 'Sijainti', nav_book: 'Varaa päivät',
-        hero_title: 'Tervetuloa <span>kesäpakopaikkaan</span> Pomoriessa',
+        hero_title: 'Tervetuloa <span>kesäpaikkaan</span> Pomoriessa',
         hero_text: 'Valoisa ja viihtyisä asuntomme sijaitsee vain muutaman askeleen päässä rannasta. Täydellinen paikka perhelomalle, joka on täynnä aurinkoa, merituulta ja täydellistä rentoutumista.',
         hero_btn: 'Varaa nyt',
         pomorie_title: 'Pomorien viehätys',
@@ -1143,7 +1243,7 @@ const translations = {
         svc_paid_tag: 'Lisämaksu',
         svc_parking: 'Yksityinen pysäköinti', svc_parking_desc: 'Tarjoamme varatun pysäköintipaikan rakennuksen lähellä. Ennakkovaraus vaaditaan.',
         gallery_title: 'Kurkista sisään', gallery_subtitle: 'Valoisa, moderni ja luotu rakkaudella yksityiskohtiin.',
-        gal_living: 'Olohuone kulmasohvalla', gal_bedroom: 'Makuuhuone parisängyllä', gal_kitchen: 'Täysin varusteltu keittiö', gal_bathroom: 'Kylpyhuone pesukoneella', gal_dining: 'Ruokailutila terassin käynti', gal_bedroom2: 'Makuuhuone kahdella sängyllä', gal_kitchen2: 'Keittiönurkkaus ruokapöydällä',
+        gal_living: 'Olohuone kulmasohvalla', gal_bedroom: 'Makuuhuone parisängyllä', gal_kitchen: 'Täysin varusteltu keittiö', gal_bathroom: 'Kylpyhuone pesukoneella', gal_dining: 'Huoneessa on suuri vaatekaappi', gal_bedroom2: 'Makuuhuone kahdella sängyllä', gal_kitchen2: 'Keittiönurkkaus ruokapöydällä',
         booking_title: 'Varaa majoituksesi', booking_subtitle: 'Valitse sisäänkirjautumis- ja uloskirjautumispäivät kalenterista.',
         cal_checkin: 'Sisäänkirjautuminen', cal_checkout: 'Uloskirjautuminen', cal_pick: '— Valitse —', cal_book_btn: 'Varaa päivät',
         cal_price_label: '/ per yö', cal_nights: 'yötä', cal_total: 'Yhteensä',
@@ -1154,6 +1254,17 @@ const translations = {
         footer_copy: '&copy; 2026 Huoneisto Tuthon Pomorie. Kaikki oikeudet pidätetään.',
         footer_terms: 'Käyttöehdot',
         footer_privacy: 'Tietosuojakäytäntö',
+        amenities_title: 'Majoituspalvelut',
+        amenities_subtitle: 'Kaikki tarvittava mukavaan ja stressitöntä oleskeluun.',
+        amenity_airport_icon: '🚐',
+        amenity_airport_title: 'Lentokenttäkuljetus',
+        amenity_airport_text: 'Mukava kuljetus lentokentältä suoraan asuntoon ilman stressiä ja viivytystä.',
+        amenity_beach_icon: '🏖️',
+        amenity_beach_title: '50 m rantaan',
+        amenity_beach_text: 'Asunto on vain 50 metrin päässä rannasta, joten mereen pääsee hetkessä.',
+        amenity_parking_icon: '🚗',
+        amenity_parking_title: 'Pysäköinti',
+        amenity_parking_text: 'Läheisyydessä on turvallinen ja kätevä pysäköintimahdollisuus.',
         dayNames: ['Ma','Ti','Ke','To','Pe','La','Su'],
         monthNames: ['Tammikuu','Helmikuu','Maaliskuu','Huhtikuu','Toukokuu','Kesäkuu','Heinäkuu','Elokuu','Syyskuu','Lokakuu','Marraskuu','Joulukuu']
     }
@@ -1202,8 +1313,8 @@ function setLanguage(lang) {
 // ===== CALENDAR =====
 function getPriceForDate(date) {
     const m = date.getMonth(); // 0-based: 5=June, 6=July, 7=Aug, 8=Sep
-    if (m === 5 || m === 6) return 65; // June, July
-    if (m === 7 || m === 8) return 60; // August, September
+    if (m === 5 || m === 6) return 120; // June, July
+    if (m === 7 || m === 8) return 100; // August, September
     return 60; // default
 }
 
